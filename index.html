@@ -281,7 +281,54 @@
         font-size: 0.95rem;
       }
     }
-  </style>
+  
+    .history-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 900px;
+    }
+
+    .history-table th,
+    .history-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      white-space: nowrap;
+    }
+
+    .history-table th {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .history-table th:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .history-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .history-table th.sort-asc::after {
+      content: " ▲";
+      font-size: 0.72rem;
+    }
+
+    .history-table th.sort-desc::after {
+      content: " ▼";
+      font-size: 0.72rem;
+    }
+
+</style>
 </head>
 <body>
   <div class="tabs-shell">
@@ -487,14 +534,41 @@
       </section>
     </section>
 
+    
     <section class="tab-panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
-      <section class="card tab-placeholder">
-        <div>
-          <h2>History</h2>
-          <p class="small"></p>
+      <section class="card">
+        <h2>Campaign History</h2>
+        <div class="table-wrap">
+          <table class="history-table sortable-table" id="historyTable">
+            <thead>
+              <tr>
+                <th data-sort-type="text">Fleet ID</th>
+                <th data-sort-type="text">Fleet Alliance</th>
+                <th data-sort-type="number">Round</th>
+                <th data-sort-type="text">Operation</th>
+                <th data-sort-type="text">Results</th>
+                <th data-sort-type="text">Fleet Starting Planet</th>
+                <th data-sort-type="text">Fleet Ending Planet</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <tr><td>001-NICK</td><td>Imperium</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>002-DANIEL</td><td>Imperium</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>003-</td><td>Imperium</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>004-IAN</td><td>Chaos</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>005-JOSE</td><td>Chaos</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>006-</td><td>Chaos</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>007-DAVID</td><td>Xenos</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>008-KIERAN</td><td>Xenos</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>009-RUSTY</td><td>Xenos</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+</tbody>
+          </table>
         </div>
       </section>
     </section>
+
+</section>
 
     <section class="tab-panel" id="panel-rules" role="tabpanel" aria-labelledby="tab-rules" hidden>
       <section class="card tab-placeholder">
@@ -568,6 +642,58 @@
         }
       });
     });
-  </script>
+  
+      function getCellValue(row, index) {
+        return row.children[index] ? row.children[index].innerText.trim() : "";
+      }
+
+      function compareValues(a, b, type, direction) {
+        if (type === "number") {
+          const numA = parseFloat(a) || 0;
+          const numB = parseFloat(b) || 0;
+          return direction === "asc" ? numA - numB : numB - numA;
+        }
+        return direction === "asc"
+          ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
+          : b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
+      }
+
+      document.querySelectorAll(".sortable-table").forEach((table) => {
+        const headers = table.querySelectorAll("th");
+        const tbody = table.querySelector("tbody");
+
+        headers.forEach((header, index) => {
+          header.setAttribute("role", "button");
+          header.setAttribute("tabindex", "0");
+
+          function handleSort() {
+            const currentDirection = header.classList.contains("sort-asc") ? "asc" : header.classList.contains("sort-desc") ? "desc" : null;
+            const nextDirection = currentDirection === "asc" ? "desc" : "asc";
+            const sortType = header.dataset.sortType || "text";
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+            header.classList.add(nextDirection === "asc" ? "sort-asc" : "sort-desc");
+
+            rows.sort((rowA, rowB) => {
+              const a = getCellValue(rowA, index);
+              const b = getCellValue(rowB, index);
+              return compareValues(a, b, sortType, nextDirection);
+            });
+
+            rows.forEach((row) => tbody.appendChild(row));
+          }
+
+          header.addEventListener("click", handleSort);
+          header.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              handleSort();
+            }
+          });
+        });
+      });
+
+</script>
 </body>
 </html>
