@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ratflavored</title>
+  <style>
+    :root {
+      --bg: #111214;
+      --panel: #1a1c20;
+      --text: #ece8df;
+      --muted: #b9b2a3;
+      --line: #2d3138;
+      --accent: #b08b4f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    h1, h2 {
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .map img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--text);
+      background: #20242a;
+    }
+
+    .alliance {
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #111;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .small {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Ratflavored</h1>
+      <p>Campaign tracker and links.</p>
+      <p><a class="button" href="https://www.patreon.com/ratflavored">Patreon</a></p>
+    </header>
+
+    <section class="card">
+      <h2>500 Worlds Campaign</h2>
+      <p class="small">Last updated: March 22, 2026</p>
+      <p>Strategic overview and current standings.</p>
+    </section>
+
+    <section class="card map">
+      <h2>Campaign Map</h2>
+      <img src="map.jpg" alt="Current campaign map for the 500 Worlds campaign">
+    </section>
+
+    <section class="card">
+      <h2>Standings</h2>
+
+      <div class="alliance">
+        <h3>Imperium</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Faction</th>
+                <th>W</th>
+                <th>L</th>
+                <th>D</th>
+                <th>Worlds</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Player 1</td>
+                <td>Astra Militarum</td>
+                <td>3</td>
+                <td>1</td>
+                <td>0</td>
+                <td>2</td>
+                <td>Holding key sector</td>
+              </tr>
+              <tr>
+                <td>Player 2</td>
+                <td>Black Templars</td>
+                <td>2</td>
+                <td>2</td>
+                <td>0</td>
+                <td>1</td>
+                <td>Contesting frontier world</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="alliance">
+        <h3>Chaos</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Faction</th>
+                <th>W</th>
+                <th>L</th>
+                <th>D</th>
+                <th>Worlds</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Player 3</td>
+                <td>Death Guard</td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>3</td>
+                <td>Major offensive underway</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
