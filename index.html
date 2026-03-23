@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,9 +9,11 @@
     :root {
       --bg: #111214;
       --panel: #1a1c20;
+      --panel-soft: rgba(255, 255, 255, 0.025);
       --text: #ece8df;
       --muted: #b9b2a3;
       --line: #2d3138;
+      --line-soft: rgba(255, 255, 255, 0.08);
       --header-bg: #20242a;
       --accent: #b08b4f;
       --accent-soft: rgba(176, 139, 79, 0.18);
@@ -41,13 +42,30 @@
     }
 
     h1, h2, h3 {
-      margin: 0 0 10px;
+      margin: 0;
       line-height: 1.2;
+      color: var(--text);
+    }
+
+    h4 {
+      margin: 0;
+      line-height: 1.25;
+      color: var(--text);
     }
 
     p {
-      margin: 0 0 12px;
+      margin: 0;
       color: var(--muted);
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.3rem;
+      color: var(--muted);
+    }
+
+    li {
+      margin: 0;
     }
 
     .card {
@@ -55,12 +73,32 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+    }
+
+    .card > :last-child {
+      margin-bottom: 0;
     }
 
     .small {
       font-size: 0.95rem;
       color: var(--muted);
+    }
+
+    .stack-sm > * + * {
+      margin-top: 8px;
+    }
+
+    .stack-md > * + * {
+      margin-top: 14px;
+    }
+
+    .stack-lg > * + * {
+      margin-top: 20px;
+    }
+
+    .section-title {
+      margin-bottom: 12px;
     }
 
     .tabs-shell {
@@ -125,12 +163,13 @@
       display: block;
     }
 
-    .tab-placeholder {
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    .map-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .map-link:hover img {
+      filter: brightness(1.04);
     }
 
     .map img {
@@ -139,6 +178,12 @@
       display: block;
       border-radius: 10px;
       border: 1px solid var(--line);
+      transition: filter 0.2s ease;
+    }
+
+    .map-hint {
+      font-size: 0.92rem;
+      color: var(--muted);
     }
 
     .table-wrap {
@@ -178,11 +223,6 @@
       font-weight: 700;
     }
 
-    .alliance-summary:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.35);
-      outline-offset: -2px;
-    }
-
     .alliance-summary td {
       border-top-width: 2px;
       border-top-style: solid;
@@ -214,6 +254,11 @@
       border-bottom-color: #6ea8e5;
     }
 
+    .alliance-imperium:focus {
+      outline: 2px solid #8fc2ff;
+      outline-offset: -2px;
+    }
+
     .alliance-chaos {
       background: #4a1f24;
       color: #ffe9ea;
@@ -228,6 +273,11 @@
       border-bottom-color: #d16a73;
     }
 
+    .alliance-chaos:focus {
+      outline: 2px solid #f08a94;
+      outline-offset: -2px;
+    }
+
     .alliance-xenos {
       background: #233d2b;
       color: #ebfff1;
@@ -240,6 +290,11 @@
     .alliance-xenos td {
       border-top-color: #76c48b;
       border-bottom-color: #76c48b;
+    }
+
+    .alliance-xenos:focus {
+      outline: 2px solid #98e0aa;
+      outline-offset: -2px;
     }
 
     .player-row {
@@ -258,30 +313,6 @@
       display: none;
     }
 
-    @media (max-width: 700px) {
-      .wrap {
-        padding: 16px 10px 32px;
-      }
-
-      .tabs-wrap {
-        padding: 10px;
-      }
-
-      .tab-button {
-        padding: 10px 16px;
-      }
-
-      .card {
-        padding: 14px;
-      }
-
-      .campaign-table th,
-      .campaign-table td {
-        padding: 10px 8px;
-        font-size: 0.95rem;
-      }
-    }
-  
     .history-table {
       width: 100%;
       border-collapse: separate;
@@ -328,32 +359,248 @@
       font-size: 0.72rem;
     }
 
-</style>
+    .rules-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .rules-section {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .rules-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0;
+      color: var(--text);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .rules-toggle:hover {
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .rules-toggle:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.35);
+      outline-offset: -2px;
+    }
+
+    .rules-toggle .toggle-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .rules-toggle .toggle-icon {
+      flex: 0 0 auto;
+      font-size: 1rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .rules-toggle[aria-expanded="true"] .toggle-icon {
+      transform: rotate(90deg);
+    }
+
+    .rules-content {
+      display: none;
+      padding: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .rules-section.open .rules-content {
+      display: block;
+    }
+
+    .rules-text {
+      color: var(--muted);
+      white-space: pre-wrap;
+    }
+
+    .rules-content ul {
+      margin-bottom: 0;
+    }
+
+    .rules-content li + li {
+      margin-top: 6px;
+    }
+
+    .operation-intro {
+      margin-bottom: 0;
+    }
+
+    .operation-card,
+    .subrule-card,
+    .setup-card {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .operation-card h3,
+    .subrule-card h3,
+    .setup-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .operation-card h4,
+    .subrule-card h4,
+    .setup-card h4 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .operation-flavor,
+    .subrule-flavor {
+      font-style: italic;
+      color: #d8cfbf;
+    }
+
+    .operation-meta,
+    .subrule-meta {
+      color: var(--muted);
+    }
+
+    .subrule-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .theatre-results li strong {
+      color: var(--text);
+    }
+
+    .intro-body {
+      max-width: 920px;
+    }
+
+    .intro-block {
+      display: grid;
+      gap: 14px;
+    }
+
+    .intro-block p + p {
+      margin-top: 0;
+    }
+
+    .setup-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .setup-card ul li + li {
+      margin-top: 8px;
+    }
+
+    .setup-card .setup-label {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .photo-card {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .photo-card a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .photo-caption {
+      padding: 12px 14px 14px;
+    }
+
+    .photo-caption p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        padding: 16px 10px 32px;
+      }
+
+      .tabs-wrap {
+        padding: 10px;
+      }
+
+      .tab-button {
+        padding: 10px 16px;
+      }
+
+      .card {
+        padding: 14px;
+        margin-bottom: 14px;
+      }
+
+      .campaign-table th,
+      .campaign-table td,
+      .history-table th,
+      .history-table td {
+        padding: 10px 8px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="tabs-shell">
     <div class="tabs-wrap">
       <div class="tabs" role="tablist" aria-label="Campaign sections">
         <button class="tab-button active" type="button" role="tab" id="tab-current" aria-selected="true" aria-controls="panel-current" data-tab="current">Current</button>
-        <button class="tab-button" type="button" role="tab" id="tab-history" aria-selected="false" aria-controls="panel-history" data-tab="history">History</button>
+        <button class="tab-button" type="button" role="tab" id="tab-intro" aria-selected="false" aria-controls="panel-intro" data-tab="intro">Intro</button>
         <button class="tab-button" type="button" role="tab" id="tab-rules" aria-selected="false" aria-controls="panel-rules" data-tab="rules">Rules</button>
+        <button class="tab-button" type="button" role="tab" id="tab-photos" aria-selected="false" aria-controls="panel-photos" data-tab="photos">Photos</button>
+        <button class="tab-button" type="button" role="tab" id="tab-log" aria-selected="false" aria-controls="panel-log" data-tab="log">Log</button>
       </div>
     </div>
   </div>
 
   <div class="wrap">
     <section class="tab-panel active" id="panel-current" role="tabpanel" aria-labelledby="tab-current">
-      <section class="card">
+      <section class="card stack-sm">
         <h2>Vespator Front Campaign: 500 Worlds</h2>
         <p class="small">Current standings (as of March 23, 2026) for the Vespator Front campaign, brought to you by your Warmaster, Nick.</p>
       </section>
 
-      <section class="card map">
+      <section class="card map stack-sm">
         <h2>Campaign Map: Phase 0</h2>
-        <img src="vespator_blank.webp" alt="Current campaign map for the 500 Worlds campaign">
+        <a class="map-link" href="vespator_blank.webp" target="_blank" rel="noopener noreferrer">
+          <img src="vespator_blank.webp" alt="Current campaign map for the 500 Worlds campaign">
+        </a>
+        <p class="map-hint">Click the map to open the full-size image in a new tab.</p>
       </section>
 
-      <section class="card">
+      <section class="card stack-md">
         <h2>Standings</h2>
 
         <div class="table-wrap">
@@ -383,7 +630,7 @@
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
-                <td>0</td>
+                <td>29</td>
                 <td>Yes</td>
                 <td>0</td>
                 <td>0</td>
@@ -430,7 +677,7 @@
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
-                <td>0</td>
+                <td>29</td>
                 <td>Yes</td>
                 <td>0</td>
                 <td>0</td>
@@ -477,7 +724,7 @@
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
-                <td>0</td>
+                <td>29</td>
                 <td>Yes</td>
                 <td>0</td>
                 <td>0</td>
@@ -534,10 +781,385 @@
       </section>
     </section>
 
-    
-    <section class="tab-panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
-      <section class="card">
-        <h2>Campaign History</h2>
+    <section class="tab-panel" id="panel-intro" role="tabpanel" aria-labelledby="tab-intro" hidden>
+      <section class="card intro-body intro-block">
+        <h2>500 Worlds: War for the Vespator Front</h2>
+        <p>In this narrative campaign, three alliances are embroiled in war across the Vespator region of Ultramar.</p>
+        <p>There are no clean borders: Every alliance has forces scattered across every world of the region, and it is a desperate scramble to secure control of individual planets.</p>
+        <p>As a player, you will help make campaign decisions for your alliance, control the movements and actions of an attack fleet, and fight defensive battles when your alliance is targeted on a planet.</p>
+        <p><strong>Fleets are an alliance's attack tokens:</strong> They determine where attacks can be launched, but they are not themselves targeted or fought over. The target is an alliance's power level on a planet, which the attacker seeks to lower. The ability of the defending alliance to fight battles does not rely on it having a fleet nearby.</p>
+        <p><strong>An alliance's campaign point total is the sum of its power level across all planets, plus an additional 3 if its stronghold is intact.</strong></p>
+        <p><strong>Your alliance wins if, at the end of the sixth campaign phase, it has more campaign points than the other alliances.</strong> In the event of a tie, an alliance whose stronghold is still intact beats a tied rival whose stronghold is not. If the campaign remains tied, victory is determined by battles.</p>
+      </section>
+
+      <section class="card intro-body stack-md">
+        <h2>Campaign Setup</h2>
+        <p>At the start of the campaign, each alliance will have to make decisions as a group. The game recommends setup strategies for each decision.</p>
+
+        <div class="setup-grid">
+          <div class="setup-card stack-sm">
+            <h3>1. Initial Power Levels</h3>
+            <p>Each alliance secretly decides on the following:</p>
+            <ul>
+              <li><strong>1 planet:</strong> Your power level on this planet begins at 4. Your stronghold is built here, taking up one of its infrastructure slots, and you must defend it.</li>
+              <li><strong>3 planets:</strong> Your power level on each of these planets begins at 3.</li>
+              <li><strong>4 planets:</strong> Your power level on each of these planets begins at 2.</li>
+              <li><strong>All other 5 planets:</strong> Your power level on each of these planets begins at 1.</li>
+            </ul>
+            <p>Everyone's decisions are revealed simultaneously, and the campaign map is updated. If more alliances wish to build their stronghold on a planet than its infrastructure locations can accommodate, one alliance will be chosen at random to re-pick all of the above.</p>
+            <p><strong>Official Guidance: </strong><i>Higher power levels on a planet will often grant that alliance some additional benefits in the battles played at that planet, and will make it harder for the foes to weaken the alliance there. We recommend that each alliance selects roughly <b>3 key areas</b> on the campaign map to group their most powerful planets around.</i></p>
+        </div>
+
+          <div class="setup-card stack-sm">
+            <h3>2. Initial Infrasctructure</h3>
+            <p>Each alliance secretly decides on 3 pieces of non-stronghold infrastructure (staging grounds, support facility, or fortification line) they wish to build, and on which planets they wish to build them. These pieces of infrastructure will aid the alliance in conquering the map.</p>
+            <p>Everyone's decisions are revealed simultaneously, and the campaign map is updated. For each planet, if alliances wish to build more pieces of infrastructure on that planet than its infrastructure locations can accommodate, alliances will be chosen at random to re-pick the planet for the chosen infrastructure.</p>
+            <p><strong>Official Guidance: </strong><i>We recommend placing <b>fortification lines</b> on planets where your alliance has a high power level, to help blunt enemy attacks, and <b>support facilities</b> or <b>staging grounds</b> near the parts of the campaign map where you wish to attack early on.</i></p>
+          </div>
+
+          <div class="setup-card stack-sm">
+            <h3>3. Initial Fleet Locations</h3>
+            <p>Each alliance secretly decides on 1 starting planet for each of their fleets.</p>
+            <p>Each player gets to choose where their own fleet starts. For alliances with a "flex" fleet, both players decide together where it starts as well as who will control it in the first phase.</p>
+            <p>Everyone's decisions are revealed simultaneously, and the campaign map is updated.</p>
+            <p><strong>Official Guidance: </strong><i>The locations of a player's fleet will affect which planets they will be able to launch attacks against. We recommend placing your initial fleets in areas of the campaign map that you wish to expand into in the first two phases of the campaign.</i></p>
+          </div>
+
+        </div>
+      </section>
+    </section>
+
+    <section class="tab-panel" id="panel-rules" role="tabpanel" aria-labelledby="tab-rules" hidden>
+      <div class="rules-list">
+        <section class="card rules-section">
+          <button class="rules-toggle" type="button" aria-expanded="false">
+            <span class="toggle-title">Campaign Structure</span>
+            <span class="toggle-icon">▸</span>
+          </button>
+          <div class="rules-content stack-md">
+            <ul>
+              <li><strong>Alliances:</strong> Imperium, Chaos, Xenos</li>
+              <li><strong>Players:</strong> 2–3 per alliance</li>
+              <li><strong>Fleets:</strong> 3 per alliance; 1 per player, plus 1 "flex" fleet for small alliances</li>
+              <li><strong>Campaign Length:</strong> 6 phases</li>
+            </ul>
+
+            <p class="rules-text">500 Worlds: War for the Vespator Front is a Warhammer 40,000 narrative campaign played over the course of several months to determine the fate of the Vespator Front region of Ultramar.</p>
+            <p class="rules-text">At the start of each phase, every player privately submits the operations selected for their fleets to Nick. Once all players have submitted, Nick announces the resulting map updates and the battles to be played for that phase. After the operations results for all players have been resolved, players will have an opportunity to move their fleets to neighboring planets.</p>
+          </div>
+        </section>
+
+        <section class="card rules-section">
+          <button class="rules-toggle" type="button" aria-expanded="false">
+            <span class="toggle-title">Operations</span>
+            <span class="toggle-icon">▸</span>
+          </button>
+          <div class="rules-content stack-md">
+            <p class="rules-text operation-intro">At the start of each phase, every player privately submits the operations selected for their fleets to Nick.</p>
+            <p class="rules-text">After the operations results for all players have been resolved, players will have an opportunity to move their fleets to neighboring planets.</p>
+
+            <div class="subrule-grid">
+              <div class="operation-card stack-sm">
+                <h3>Battle Operation (Attack Nearby Planet)</h3>
+                <p class="operation-flavor">Battles must be fought for wars to be won and worlds to be claimed.</p>
+                <p class="operation-meta"><strong>When selecting this Campaign Operation, select one of the Campaign Attack Types below, then select this Fleet’s Planet or one connected to it, then select one opposing Alliance.</strong></p>
+                <p class="rules-text">In the Resolve Battle Operations stage, each Alliance will select players from their Alliance to defend against the Battle Operations declared against them this Campaign phase. For each of those Battle Operations, a player from that Alliance can be selected to play a game of Warhammer 40,000 against the player whose Fleet declared it. Each Campaign Attack Type has a bespoke mission that can be played, and a different set of Campaign Outcomes that will change the situation on the campaign map. Alternatively, players can play a different mission from another Warhammer 40,000 publication, then apply the Campaign Outcomes for the selected Campaign Attack Type after that battle.</p>
+                <p class="rules-text">Photos of the missions associated with the Campaign Attack Types have been sent in the group chat.</p>
+
+                <h4>Campaign Attack Types</h4>
+                <ul>
+                  <li><strong>Seize Power Base:</strong> The attacking Alliance attempts to take over pieces of Infrastructure that the opposing Alliance has constructed at the selected Planet, or to destroy them in order to raise their own over the ruins.</li>
+                  <li><strong>Purge and Burn:</strong> The attacking Alliance attempts to reduce the Power Level of the opposing Alliance at the selected Planet by exterminating the foe and preventing them spreading elsewhere; this is particularly beneficial if the attacking Alliance has a higher Power Level.</li>
+                  <li><strong>Orbital Invasion:</strong> The attacking Alliance attempts to reduce the Power Level of the opposing Alliance at the selected Planet by seizing a beachhead and pouring in reinforcements to hold off the surrounding foe; this is particularly beneficial if the attacking Alliance has a lower Power Level.</li>
+                  <li><strong>Planetary Bombardment:</strong> By weakening the defender’s protection and making them vulnerable to a catastrophic bombardment, the attacking Alliance attempts to destroy the Planet’s Infrastructure locations, and potentially make the Planet uncontrollable.</li>
+                  <li><strong>Supply Base Raid:</strong> The attacking Alliance attempts sabotage or theft at a key site such as a shipyard, transit hub, or way station. Their aim is to reduce the defender’s ability to move resources and reinforcements to and from the Planet, reducing the Power Level of the opposing Alliance here or at connected Planets.</li>
+                  <li><strong>Boarding Action:</strong> The attacking Alliance strikes at an opposing Alliance’s Fleet stationed in orbit at an opposing Alliance’s Planet, aiming to cause enough destruction to force the defending Fleet to relocate to another system.</li>
+                </ul>
+              </div>
+
+              <div class="operation-card stack-sm">
+                <h3>Void Leap Operation (Teleport Fleet)</h3>
+                <p class="operation-flavor">Whether by risking the tides of the Warp, employing strange energy gates, or some other method of extended interstellar travel, fleets and armies leap across vast gulfs of space.</p>
+                <p class="operation-meta"><strong>When selecting this Campaign Operation, select one Planet on the map. In the Fleet Arrival stage, move this Fleet to that Planet.</strong></p>
+                <p class="operation-meta">This operation does not result in a battle.</p>
+              </div>
+
+              <div class="operation-card stack-sm">
+                <h3>Raise Edifices Operation (Build Infrastructure at Local Planet)</h3>
+                <p class="operation-flavor">While armed forces stand guard on the ground and in the void, teeming masses toil to raise new strategically vital structures on captured worlds.</p>
+                <p class="operation-meta"><strong>When selecting this Campaign Operation, select one of the following pieces of Infrastructure: Fortification Line, Support Facility, or Staging Grounds. In the relevant part of the Edifice Raising Complete stage (before Fleets move or engage in battles), this Fleet’s Alliance builds that piece of Infrastructure at this Fleet’s Planet.</strong></p>
+                <p class="operation-meta">This operation does not result in a battle.</p>
+              </div>
+
+              <div class="operation-card stack-sm">
+                <h3>Logistical Auxilia Operation (Predict Future Theatre of Nearby Battle)</h3>
+                <p class="operation-flavor">Whether performing advanced augury and scouting missions, guarding supply lines from void piracy, or staging diversionary raids to overstretch enemy garrison forces, these assets fight not for their own glory, but instead to enable others.</p>
+                <p class="operation-meta"><strong>Until the end of the Campaign phase, each time this Fleet’s Alliance is attacked at this Fleet’s Planet or one connected to it, the player from this Alliance fighting that battle can select the Theatre used instead of the player from the attacking Alliance.</strong></p>
+                <p class="operation-meta">This operation does not result in a battle.</p>
+              </div>
+
+              <div class="operation-card stack-sm">
+                <h3>Deploy Kill Teams Operation (Reduce Hostile Power on Nearby Planet; 33% chance per enemy alliance)</h3>
+                <p class="operation-flavor">Where massed formations risk being cut to pieces by superior enemy forces, elite kill team deployments can perform acts of sabotage and guerrilla raids to weaken the foe’s grip.</p>
+                <p class="operation-meta"><strong>When selecting this Campaign Operation, select this Fleet's Planet or one connected to it. In the Low-level Resistance stage (after Fleets move and engage in battles), for each opposing Alliance, the Warmaster rolls one D6: on a 5+, that Alliance's Power Level at that Planet is reduced by 1.</strong></p>
+                <p class="operation-meta">This operation does not result in a battle.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card rules-section">
+          <button class="rules-toggle" type="button" aria-expanded="false">
+            <span class="toggle-title">Infrastructure</span>
+            <span class="toggle-icon">▸</span>
+          </button>
+          <div class="rules-content">
+            <div class="subrule-grid">
+              <div class="subrule-card stack-sm">
+                <h3>Infrastructure Overview</h3>
+                <p class="subrule-flavor">Armies without functional supply lines, void transport, and strategic coordination would soon perish in the fast-moving wars upon the Vespator Front.</p>
+                <p class="rules-text">There are four types of infrastructure that can be built by players. When a player is allowed to build infrastructure, the rules will describe which types are available to build.</p>
+                <p class="rules-text">If a planet does not have any unoccupied infrastructure locations left on it, players cannot build infrastructure on that planet.</p>
+                <p class="rules-text">When infrastructure is destroyed, its ruins continue to occupy its infrastructure location, and that destroyed location cannot be used or cleared to build more infrastructure.</p>
+                <p class="rules-text">When all of a planet's infrastructure locations are destroyed, the power level of every alliance at that planet is reduced to 0. Fleets can move to destroyed planets, but can't select destroyed planets for operations.</p>
+                <p class="rules-text">There is a maximum number of each type of infrastructure that an alliance can control on the board:</p>
+                <ul>
+                    <li><strong>Stronghold: 1</strong></li>
+                    <li><strong>Support Facility: 3</strong></li>
+                    <li><strong>Staging Grounds: 3</strong></li>
+                    <li><strong>Fortification Line: 5</strong></li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Stronghold</h3>
+                <p class="subrule-flavor">Every conquest must be commanded from a central position of greatest strength. Such strongholds are the sleepless mind and beating heart both of an empire's ambitions of conquest.</p>
+                <p class="rules-text">Each time a player who is part of this stronghold's alliance wins a battle at this planet or at a nearby (1) planet, they can treat their power level at that planet as 1 higher or lower than it actually is for the purposes of that battle's campaign outcome.</p>
+                <p class="rules-text"><strong>Official Guidance: </strong><i>While an alliance's stronghold remains undestroyed, it will also contribute 3 to its alliance's campaign point total. We recommend placing your stronghold in a key area within a group of your most powerful planets.</i></p>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Staging Grounds</h3>
+                <p class="subrule-flavor">Be it forward operating bases, well-positioned Webway gates, rifts in the fabric of realspace, or hidden training grounds and marshaling sites, these locations allow commanders to rapidly deploy the right forces into rapidly evolving conflict zones.</p>
+                <p class="rules-text">Each time a player who is part of these staging grounds' alliance fights a battle at this planet or at a nearby (1) planet, they can treat their power level at that planet as 1 higher or lower than it actually is for the purposes of that battle's mission rules. The effects of multiple staging grounds are not cumulative.</p>
+                <p class="rules-texT"><strong>Official Guidance: </strong><i>We recommend placing staging grounds near the parts of the campaign map where you wish to attack soon.</i></p>
+            </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Support Facility</h3>
+                <p class="subrule-flavor">From promethium fuelling facilities and orbital docks to astropathic sanctums, biomass larders, srhines to the gods, or colossal translocation gates, these facilities provide battle groups with the means to swiftly cross interstellar gulfs.</p>
+                <p class="rules-text">For players who are part of this support facility's alliance, planets at a distance of 2 from it are now considered connected to it ("nearby"), <strong>but not vice versa.</strong></p>
+                <p class="rules-texT"><strong>OFficial Guidance: </strong><i>We recommend placing support facilities near the parts of the campaign map where you wish to attack soon.</i></p>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Fortification Line</h3>
+                <p class="subrule-flavor">Some foritifications are unsutble things: Miles-long curtain walls, hulking scrap forts, or trench networks bristling with guns. Others are more subtle, be they webs of illusion, sorcerous snares, or layers of invisible force fields. All achieve the same purpose: To stymie the foes' advance.</p>
+                <p class="rules-text">The minimum power level of this fortification line's alliance at this planet is increased by 1. When it's built, if it increaes the minimum power level above its current power level, increase its power level accordingly.</p>
+                <p class="rules-text">Each time a rule would reduce the power level of the fortification line's alliance at this planet below the minimum, one of their fortification lines at this planet is destroyed instead.</p>
+                <p class="rules=text"><strong>Official Guidance: </strong><i>We recommend placing fortification lines on planets where your alliance has a high power level, to help blunt enemy attacks.</i></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card rules-section">
+          <button class="rules-toggle" type="button" aria-expanded="false">
+            <span class="toggle-title">Planetary Theatres</span>
+            <span class="toggle-icon">▸</span>
+          </button>
+          <div class="rules-content stack-md">
+            <p class="rules-text">Each Theatre below has a dedicated sub-box for its tactical benefit, terrain guidance, and D6 results table.</p>
+
+            <div class="subrule-grid">
+              <div class="subrule-card stack-sm">
+                <h3>Spaceport</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Spaceport tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Spaceport tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Spaceport result here.</li>
+                  <li><strong>2:</strong> Add Spaceport result here.</li>
+                  <li><strong>3:</strong> Add Spaceport result here.</li>
+                  <li><strong>4:</strong> Add Spaceport result here.</li>
+                  <li><strong>5:</strong> Add Spaceport result here.</li>
+                  <li><strong>6:</strong> Add Spaceport result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Desolate Wastes</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Desolate Wastes tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Desolate Wastes tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Desolate Wastes result here.</li>
+                  <li><strong>2:</strong> Add Desolate Wastes result here.</li>
+                  <li><strong>3:</strong> Add Desolate Wastes result here.</li>
+                  <li><strong>4:</strong> Add Desolate Wastes result here.</li>
+                  <li><strong>5:</strong> Add Desolate Wastes result here.</li>
+                  <li><strong>6:</strong> Add Desolate Wastes result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Xenoflora Jungle</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Xenoflora Jungle tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Xenoflora Jungle tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Xenoflora Jungle result here.</li>
+                  <li><strong>2:</strong> Add Xenoflora Jungle result here.</li>
+                  <li><strong>3:</strong> Add Xenoflora Jungle result here.</li>
+                  <li><strong>4:</strong> Add Xenoflora Jungle result here.</li>
+                  <li><strong>5:</strong> Add Xenoflora Jungle result here.</li>
+                  <li><strong>6:</strong> Add Xenoflora Jungle result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Rad Zone</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Rad Zone tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Rad Zone tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Rad Zone result here.</li>
+                  <li><strong>2:</strong> Add Rad Zone result here.</li>
+                  <li><strong>3:</strong> Add Rad Zone result here.</li>
+                  <li><strong>4:</strong> Add Rad Zone result here.</li>
+                  <li><strong>5:</strong> Add Rad Zone result here.</li>
+                  <li><strong>6:</strong> Add Rad Zone result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Forge Complex</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Forge Complex tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Forge Complex tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Forge Complex result here.</li>
+                  <li><strong>2:</strong> Add Forge Complex result here.</li>
+                  <li><strong>3:</strong> Add Forge Complex result here.</li>
+                  <li><strong>4:</strong> Add Forge Complex result here.</li>
+                  <li><strong>5:</strong> Add Forge Complex result here.</li>
+                  <li><strong>6:</strong> Add Forge Complex result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Hab Sprawl</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Hab Sprawl tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Hab Sprawl tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Hab Sprawl result here.</li>
+                  <li><strong>2:</strong> Add Hab Sprawl result here.</li>
+                  <li><strong>3:</strong> Add Hab Sprawl result here.</li>
+                  <li><strong>4:</strong> Add Hab Sprawl result here.</li>
+                  <li><strong>5:</strong> Add Hab Sprawl result here.</li>
+                  <li><strong>6:</strong> Add Hab Sprawl result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Delvesite Facility</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Delvesite Facility tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Delvesite Facility tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Delvesite Facility result here.</li>
+                  <li><strong>2:</strong> Add Delvesite Facility result here.</li>
+                  <li><strong>3:</strong> Add Delvesite Facility result here.</li>
+                  <li><strong>4:</strong> Add Delvesite Facility result here.</li>
+                  <li><strong>5:</strong> Add Delvesite Facility result here.</li>
+                  <li><strong>6:</strong> Add Delvesite Facility result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Dead Lands</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Dead Lands tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Dead Lands tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Dead Lands result here.</li>
+                  <li><strong>2:</strong> Add Dead Lands result here.</li>
+                  <li><strong>3:</strong> Add Dead Lands result here.</li>
+                  <li><strong>4:</strong> Add Dead Lands result here.</li>
+                  <li><strong>5:</strong> Add Dead Lands result here.</li>
+                  <li><strong>6:</strong> Add Dead Lands result here.</li>
+                </ul>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3>Tomb Complex</h3>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Tomb Complex tactical benefit here.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Tomb Complex tables here.</p>
+                <h4>D6 Results</h4>
+                <ul class="theatre-results">
+                  <li><strong>1:</strong> Add Tomb Complex result here.</li>
+                  <li><strong>2:</strong> Add Tomb Complex result here.</li>
+                  <li><strong>3:</strong> Add Tomb Complex result here.</li>
+                  <li><strong>4:</strong> Add Tomb Complex result here.</li>
+                  <li><strong>5:</strong> Add Tomb Complex result here.</li>
+                  <li><strong>6:</strong> Add Tomb Complex result here.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="panel-photos" role="tabpanel" aria-labelledby="tab-photos" hidden>
+      <section class="card stack-md">
+        <h2>Photos</h2>
+        <p class="small">Gallery of campaign photos, battlefields, painted armies, and map updates.</p>
+
+        <div class="photos-grid">
+          <div class="photo-card">
+            <a href="photo-1.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="photo-1.jpg" alt="Campaign photo 1">
+            </a>
+            <div class="photo-caption">
+              <p>Caption placeholder for Photo 1.</p>
+            </div>
+          </div>
+
+          <div class="photo-card">
+            <a href="photo-2.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="photo-2.jpg" alt="Campaign photo 2">
+            </a>
+            <div class="photo-caption">
+              <p>Caption placeholder for Photo 2.</p>
+            </div>
+          </div>
+
+          <div class="photo-card">
+            <a href="photo-3.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="photo-3.jpg" alt="Campaign photo 3">
+            </a>
+            <div class="photo-caption">
+              <p>Caption placeholder for Photo 3.</p>
+            </div>
+          </div>
+
+          <div class="photo-card">
+            <a href="photo-4.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="photo-4.jpg" alt="Campaign photo 4">
+            </a>
+            <div class="photo-caption">
+              <p>Caption placeholder for Photo 4.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="tab-panel" id="panel-log" role="tabpanel" aria-labelledby="tab-log" hidden>
+      <section class="card stack-md">
+        <h2>Campaign Log</h2>
         <div class="table-wrap">
           <table class="history-table sortable-table" id="historyTable">
             <thead>
@@ -545,15 +1167,14 @@
                 <th data-sort-type="text">Fleet ID</th>
                 <th data-sort-type="text">Alliance</th>
                 <th data-sort-type="text">Player</th>
-                <th data-sort-type="number">Round</th>
+                <th data-sort-type="number">Phase</th>
+                <th data-sort-type="text">Start Planet</th>
                 <th data-sort-type="text">Operation</th>
                 <th data-sort-type="text">Results</th>
-                <th data-sort-type="text">Starting Planet</th>
-                <th data-sort-type="text">Ending Planet</th>
+                <th data-sort-type="text">Finish Planet</th>
               </tr>
             </thead>
             <tbody>
-            
               <tr><td>001-IMP-NICK</td><td>Imperium</td><td>Nick</td><td>1</td><td></td><td></td><td></td><td></td></tr>
               <tr><td>002-IMP-DANIEL</td><td>Imperium</td><td>Daniel</td><td>1</td><td></td><td></td><td></td><td></td></tr>
               <tr><td>003-IMP-FLEX</td><td>Imperium</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
@@ -563,19 +1184,8 @@
               <tr><td>007-XEN-DAVID</td><td>Xenos</td><td>David</td><td>1</td><td></td><td></td><td></td><td></td></tr>
               <tr><td>008-XEN-KIERAN</td><td>Xenos</td><td>Kieran</td><td>1</td><td></td><td></td><td></td><td></td></tr>
               <tr><td>009-XEN-RUSTY</td><td>Xenos</td><td>Rusty</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-</tbody>
+            </tbody>
           </table>
-        </div>
-      </section>
-    </section>
-
-</section>
-
-    <section class="tab-panel" id="panel-rules" role="tabpanel" aria-labelledby="tab-rules" hidden>
-      <section class="card tab-placeholder">
-        <div>
-          <h2>Rules</h2>
-          <p class="small"></p>
         </div>
       </section>
     </section>
@@ -598,6 +1208,8 @@
         panel.classList.toggle('active', isActive);
         panel.hidden = !isActive;
       });
+
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
 
     tabButtons.forEach((button, index) => {
@@ -643,58 +1255,81 @@
         }
       });
     });
-  
-      function getCellValue(row, index) {
-        return row.children[index] ? row.children[index].innerText.trim() : "";
+
+    function getCellValue(row, index) {
+      return row.children[index] ? row.children[index].innerText.trim() : "";
+    }
+
+    function compareValues(a, b, type, direction) {
+      if (type === "number") {
+        const numA = parseFloat(a) || 0;
+        const numB = parseFloat(b) || 0;
+        return direction === "asc" ? numA - numB : numB - numA;
       }
+      return direction === "asc"
+        ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
+        : b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
+    }
 
-      function compareValues(a, b, type, direction) {
-        if (type === "number") {
-          const numA = parseFloat(a) || 0;
-          const numB = parseFloat(b) || 0;
-          return direction === "asc" ? numA - numB : numB - numA;
-        }
-        return direction === "asc"
-          ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
-          : b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
-      }
+    document.querySelectorAll(".sortable-table").forEach((table) => {
+      const headers = table.querySelectorAll("th");
+      const tbody = table.querySelector("tbody");
 
-      document.querySelectorAll(".sortable-table").forEach((table) => {
-        const headers = table.querySelectorAll("th");
-        const tbody = table.querySelector("tbody");
+      headers.forEach((header, index) => {
+        header.setAttribute("role", "button");
+        header.setAttribute("tabindex", "0");
 
-        headers.forEach((header, index) => {
-          header.setAttribute("role", "button");
-          header.setAttribute("tabindex", "0");
+        function handleSort() {
+          const currentDirection = header.classList.contains("sort-asc")
+            ? "asc"
+            : header.classList.contains("sort-desc")
+              ? "desc"
+              : null;
+          const nextDirection = currentDirection === "asc" ? "desc" : "asc";
+          const sortType = header.dataset.sortType || "text";
+          const rows = Array.from(tbody.querySelectorAll("tr"));
 
-          function handleSort() {
-            const currentDirection = header.classList.contains("sort-asc") ? "asc" : header.classList.contains("sort-desc") ? "desc" : null;
-            const nextDirection = currentDirection === "asc" ? "desc" : "asc";
-            const sortType = header.dataset.sortType || "text";
-            const rows = Array.from(tbody.querySelectorAll("tr"));
+          headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+          header.classList.add(nextDirection === "asc" ? "sort-asc" : "sort-desc");
 
-            headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
-            header.classList.add(nextDirection === "asc" ? "sort-asc" : "sort-desc");
-
-            rows.sort((rowA, rowB) => {
-              const a = getCellValue(rowA, index);
-              const b = getCellValue(rowB, index);
-              return compareValues(a, b, sortType, nextDirection);
-            });
-
-            rows.forEach((row) => tbody.appendChild(row));
-          }
-
-          header.addEventListener("click", handleSort);
-          header.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              handleSort();
-            }
+          rows.sort((rowA, rowB) => {
+            const a = getCellValue(rowA, index);
+            const b = getCellValue(rowB, index);
+            return compareValues(a, b, sortType, nextDirection);
           });
+
+          rows.forEach((row) => tbody.appendChild(row));
+        }
+
+        header.addEventListener("click", handleSort);
+        header.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            handleSort();
+          }
         });
       });
+    });
 
-</script>
+    document.querySelectorAll('.rules-toggle').forEach(toggle => {
+      const section = toggle.closest('.rules-section');
+      const startsOpen = toggle.getAttribute('aria-expanded') === 'true';
+      section.classList.toggle('open', startsOpen);
+
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        section.classList.toggle('open', !isOpen);
+      });
+    });
+
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+    });
+  </script>
 </body>
 </html>
