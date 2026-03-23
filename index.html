@@ -439,7 +439,8 @@
 
     .operation-card,
     .subrule-card,
-    .setup-card {
+    .setup-card,
+    .event-card {
       background: var(--panel-soft);
       border: 1px solid var(--line);
       border-radius: 12px;
@@ -448,34 +449,69 @@
 
     .operation-card h3,
     .subrule-card h3,
-    .setup-card h3 {
+    .setup-card h3,
+    .event-card h3 {
       margin-bottom: 10px;
+    }
+
+    .subrule-card h3.with-icon {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 10px;
+    }
+
+    .subrule-card h3.with-icon .icon-wrap {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 40px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .subrule-card h3.with-icon .theater-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .subrule-card h3.with-icon .title-text {
+      line-height: 1.1;
     }
 
     .operation-card h4,
     .subrule-card h4,
-    .setup-card h4 {
+    .setup-card h4,
+    .event-card h4 {
       margin-top: 18px;
       margin-bottom: 8px;
     }
 
     .operation-flavor,
-    .subrule-flavor {
+    .subrule-flavor,
+    .event-flavor {
       font-style: italic;
       color: #d8cfbf;
     }
 
     .operation-meta,
-    .subrule-meta {
+    .subrule-meta,
+    .event-meta {
       color: var(--muted);
     }
 
-    .subrule-grid {
+    .subrule-grid,
+    .events-grid {
       display: grid;
       gap: 16px;
     }
 
-    .theatre-results li strong {
+    .theater-results li strong {
       color: var(--text);
     }
 
@@ -589,7 +625,7 @@
     <section class="tab-panel active" id="panel-current" role="tabpanel" aria-labelledby="tab-current">
       <section class="card stack-sm">
         <h2>Vespator Front Campaign: 500 Worlds</h2>
-        <p class="small">Current standings (as of March 23, 2026) for the Vespator Front campaign, brought to you by your Warmaster, Nick.</p>
+        <p class="small">Current standings for the Vespator Front campaign, brought to you by your Warmaster, Nick.</p>
       </section>
 
       <section class="card map stack-sm">
@@ -598,6 +634,7 @@
           <img src="vespator_blank.webp" alt="Current campaign map for the 500 Worlds campaign">
         </a>
         <p class="map-hint">Click the map to open the full-size image in a new tab.</p>
+        <p class="map-hint">Theater icon legend is in the upper-right.</p>
       </section>
 
       <section class="card stack-md">
@@ -785,7 +822,7 @@
       <section class="card intro-body intro-block">
         <h2>500 Worlds: War for the Vespator Front</h2>
         <p>In this narrative campaign, three alliances are embroiled in war across the Vespator region of Ultramar.</p>
-        <p>There are no clean borders: Every alliance has forces scattered across every world of the region, and it is a desperate scramble to secure control of individual planets.</p>
+        <p>There are no clean borders. Every alliance has forces scattered across every world of the region, and it is a desperate scramble to secure control of individual planets.</p>
         <p>As a player, you will help make campaign decisions for your alliance, control the movements and actions of an attack fleet, and fight defensive battles when your alliance is targeted on a planet.</p>
         <p><strong>Fleets are an alliance's attack tokens:</strong> They determine where attacks can be launched, but they are not themselves targeted or fought over. The target is an alliance's power level on a planet, which the attacker seeks to lower. The ability of the defending alliance to fight battles does not rely on it having a fleet nearby.</p>
         <p><strong>An alliance's campaign point total is the sum of its power level across all planets, plus an additional 3 if its stronghold is intact.</strong></p>
@@ -807,24 +844,23 @@
               <li><strong>All other 5 planets:</strong> Your power level on each of these planets begins at 1.</li>
             </ul>
             <p>Everyone's decisions are revealed simultaneously, and the campaign map is updated. If more alliances wish to build their stronghold on a planet than its infrastructure locations can accommodate, one alliance will be chosen at random to re-pick all of the above.</p>
-            <p><strong>Official Guidance: </strong><i>Higher power levels on a planet will often grant that alliance some additional benefits in the battles played at that planet, and will make it harder for the foes to weaken the alliance there. We recommend that each alliance selects roughly <b>3 key areas</b> on the campaign map to group their most powerful planets around.</i></p>
-        </div>
+            <p><strong>Official Guidance:</strong> <i>Higher power levels on a planet will often grant that alliance some additional benefits in battles played at that planet and will make it harder for foes to weaken the alliance there. We recommend that each alliance selects roughly <b>3 key areas</b> on the campaign map to group their most powerful planets around.</i></p>
+          </div>
 
           <div class="setup-card stack-sm">
-            <h3>2. Initial Infrasctructure</h3>
+            <h3>2. Initial Infrastructure</h3>
             <p>Each alliance secretly decides on 3 pieces of non-stronghold infrastructure (staging grounds, support facility, or fortification line) they wish to build, and on which planets they wish to build them. These pieces of infrastructure will aid the alliance in conquering the map.</p>
             <p>Everyone's decisions are revealed simultaneously, and the campaign map is updated. For each planet, if alliances wish to build more pieces of infrastructure on that planet than its infrastructure locations can accommodate, alliances will be chosen at random to re-pick the planet for the chosen infrastructure.</p>
-            <p><strong>Official Guidance: </strong><i>We recommend placing <b>fortification lines</b> on planets where your alliance has a high power level, to help blunt enemy attacks, and <b>support facilities</b> or <b>staging grounds</b> near the parts of the campaign map where you wish to attack early on.</i></p>
+            <p><strong>Official Guidance:</strong> <i>We recommend placing <b>fortification lines</b> on planets where your alliance has a high power level, to help blunt enemy attacks, and <b>support facilities</b> or <b>staging grounds</b> near the parts of the campaign map where you wish to attack early on.</i></p>
           </div>
 
           <div class="setup-card stack-sm">
             <h3>3. Initial Fleet Locations</h3>
             <p>Each alliance secretly decides on 1 starting planet for each of their fleets.</p>
-            <p>Each player gets to choose where their own fleet starts. For alliances with a "flex" fleet, both players decide together where it starts as well as who will control it in the first phase.</p>
+            <p>Each player gets to choose where their own fleet starts. For alliances with a flex fleet, both players decide together where it starts as well as who will control it in the first phase.</p>
             <p>Everyone's decisions are revealed simultaneously, and the campaign map is updated.</p>
-            <p><strong>Official Guidance: </strong><i>The locations of a player's fleet will affect which planets they will be able to launch attacks against. We recommend placing your initial fleets in areas of the campaign map that you wish to expand into in the first two phases of the campaign.</i></p>
+            <p><strong>Official Guidance:</strong> <i>The locations of a player's fleet will affect which planets they will be able to launch attacks against. We recommend placing your initial fleets in areas of the campaign map that you wish to expand into in the first two phases of the campaign.</i></p>
           </div>
-
         </div>
       </section>
     </section>
@@ -840,13 +876,24 @@
             <ul>
               <li><strong>Alliances:</strong> Imperium, Chaos, Xenos</li>
               <li><strong>Players:</strong> 2–3 per alliance</li>
-              <li><strong>Fleets:</strong> 3 per alliance; 1 per player, plus 1 "flex" fleet for small alliances</li>
+              <li><strong>Fleets:</strong> 3 per alliance; 1 per player, plus 1 flex fleet for small alliances</li>
               <li><strong>Campaign Length:</strong> 6 phases</li>
             </ul>
 
             <p class="rules-text">500 Worlds: War for the Vespator Front is a Warhammer 40,000 narrative campaign played over the course of several months to determine the fate of the Vespator Front region of Ultramar.</p>
-            <p class="rules-text">At the start of each phase, every player privately submits the operations selected for their fleets to Nick. Once all players have submitted, Nick announces the resulting map updates and the battles to be played for that phase. After the operations results for all players have been resolved, players will have an opportunity to move their fleets to neighboring planets.</p>
-          </div>
+            <p class="rules-text">At the start of each phase, every player privately submits the operations selected for their fleets to Nick. Once all players have submitted, Nick announces the resulting map updates and the battles to be played for that phase.</p>
+            <p class="rules-text">After the operations results for all players have been resolved, there will be randomly generated events and then players will have an additional opportunity to move their fleets to nearby planets and to build infrastructure.</p>
+            <h3>Campaign Phase Structure</h3>
+            <p class="rules-text">Each phase of the campaign is divided into the following steps:</p>
+            <ul>
+                <li>1. Select Operations</li>
+                <li>2. Perform Operations</li>
+                <li>3. Results and Events</li>
+                <li>4. Move Fleets</li>
+                <li>5. Build Infrastructure</li>
+            </ul>
+            <p class="rules-text"><a href="http://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front/">The campaign rules for the War on the Vespator Front can be found here.</a></p>
+        </div>
         </section>
 
         <section class="card rules-section">
@@ -864,7 +911,7 @@
                 <p class="operation-flavor">Battles must be fought for wars to be won and worlds to be claimed.</p>
                 <p class="operation-meta"><strong>When selecting this Campaign Operation, select one of the Campaign Attack Types below, then select this Fleet’s Planet or one connected to it, then select one opposing Alliance.</strong></p>
                 <p class="rules-text">In the Resolve Battle Operations stage, each Alliance will select players from their Alliance to defend against the Battle Operations declared against them this Campaign phase. For each of those Battle Operations, a player from that Alliance can be selected to play a game of Warhammer 40,000 against the player whose Fleet declared it. Each Campaign Attack Type has a bespoke mission that can be played, and a different set of Campaign Outcomes that will change the situation on the campaign map. Alternatively, players can play a different mission from another Warhammer 40,000 publication, then apply the Campaign Outcomes for the selected Campaign Attack Type after that battle.</p>
-                <p class="rules-text">Photos of the missions associated with the Campaign Attack Types have been sent in the group chat.</p>
+                <p class="rules-text"><a href="http://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front/">The missions associated with each of the Campaign Attack Types can be found here.</a></p>
 
                 <h4>Campaign Attack Types</h4>
                 <ul>
@@ -892,9 +939,9 @@
               </div>
 
               <div class="operation-card stack-sm">
-                <h3>Logistical Auxilia Operation (Predict Future Theatre of Nearby Battle)</h3>
+                <h3>Logistical Auxilia Operation (Predict Future Theater of Nearby Battle)</h3>
                 <p class="operation-flavor">Whether performing advanced augury and scouting missions, guarding supply lines from void piracy, or staging diversionary raids to overstretch enemy garrison forces, these assets fight not for their own glory, but instead to enable others.</p>
-                <p class="operation-meta"><strong>Until the end of the Campaign phase, each time this Fleet’s Alliance is attacked at this Fleet’s Planet or one connected to it, the player from this Alliance fighting that battle can select the Theatre used instead of the player from the attacking Alliance.</strong></p>
+                <p class="operation-meta"><strong>Until the end of the Campaign phase, each time this Fleet’s Alliance is attacked at this Fleet’s Planet or one connected to it, the player from this Alliance fighting that battle can select the theater used instead of the player from the attacking Alliance.</strong></p>
                 <p class="operation-meta">This operation does not result in a battle.</p>
               </div>
 
@@ -924,40 +971,60 @@
                 <p class="rules-text">When all of a planet's infrastructure locations are destroyed, the power level of every alliance at that planet is reduced to 0. Fleets can move to destroyed planets, but can't select destroyed planets for operations.</p>
                 <p class="rules-text">There is a maximum number of each type of infrastructure that an alliance can control on the board:</p>
                 <ul>
-                    <li><strong>Stronghold: 1</strong></li>
-                    <li><strong>Support Facility: 3</strong></li>
-                    <li><strong>Staging Grounds: 3</strong></li>
-                    <li><strong>Fortification Line: 5</strong></li>
+                  <li><strong>Stronghold: 1</strong></li>
+                  <li><strong>Support Facility: 3</strong></li>
+                  <li><strong>Staging Grounds: 3</strong></li>
+                  <li><strong>Fortification Line: 5</strong></li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Stronghold</h3>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="infrastructure_stronghold.png" alt="Stronghold icon">
+                  </span>
+                  <span class="title-text">Stronghold</span>
+                </h3>
                 <p class="subrule-flavor">Every conquest must be commanded from a central position of greatest strength. Such strongholds are the sleepless mind and beating heart both of an empire's ambitions of conquest.</p>
                 <p class="rules-text">Each time a player who is part of this stronghold's alliance wins a battle at this planet or at a nearby (1) planet, they can treat their power level at that planet as 1 higher or lower than it actually is for the purposes of that battle's campaign outcome.</p>
-                <p class="rules-text"><strong>Official Guidance: </strong><i>While an alliance's stronghold remains undestroyed, it will also contribute 3 to its alliance's campaign point total. We recommend placing your stronghold in a key area within a group of your most powerful planets.</i></p>
+                <p class="rules-text"><strong>Official Guidance:</strong> <i>While an alliance's stronghold remains undestroyed, it will also contribute 3 to its alliance's campaign point total. We recommend placing your stronghold in a key area within a group of your most powerful planets.</i></p>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Staging Grounds</h3>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="infrastructure_staginggrounds.png" alt="Staging Grounds icon">
+                  </span>
+                  <span class="title-text">Staging Grounds</span>
+                </h3>
                 <p class="subrule-flavor">Be it forward operating bases, well-positioned Webway gates, rifts in the fabric of realspace, or hidden training grounds and marshaling sites, these locations allow commanders to rapidly deploy the right forces into rapidly evolving conflict zones.</p>
                 <p class="rules-text">Each time a player who is part of these staging grounds' alliance fights a battle at this planet or at a nearby (1) planet, they can treat their power level at that planet as 1 higher or lower than it actually is for the purposes of that battle's mission rules. The effects of multiple staging grounds are not cumulative.</p>
-                <p class="rules-texT"><strong>Official Guidance: </strong><i>We recommend placing staging grounds near the parts of the campaign map where you wish to attack soon.</i></p>
-            </div>
-
-              <div class="subrule-card stack-sm">
-                <h3>Support Facility</h3>
-                <p class="subrule-flavor">From promethium fuelling facilities and orbital docks to astropathic sanctums, biomass larders, srhines to the gods, or colossal translocation gates, these facilities provide battle groups with the means to swiftly cross interstellar gulfs.</p>
-                <p class="rules-text">For players who are part of this support facility's alliance, planets at a distance of 2 from it are now considered connected to it ("nearby"), <strong>but not vice versa.</strong></p>
-                <p class="rules-texT"><strong>OFficial Guidance: </strong><i>We recommend placing support facilities near the parts of the campaign map where you wish to attack soon.</i></p>
+                <p class="rules-text"><strong>Official Guidance:</strong> <i>We recommend placing staging grounds near the parts of the campaign map where you wish to attack soon.</i></p>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Fortification Line</h3>
-                <p class="subrule-flavor">Some foritifications are unsutble things: Miles-long curtain walls, hulking scrap forts, or trench networks bristling with guns. Others are more subtle, be they webs of illusion, sorcerous snares, or layers of invisible force fields. All achieve the same purpose: To stymie the foes' advance.</p>
-                <p class="rules-text">The minimum power level of this fortification line's alliance at this planet is increased by 1. When it's built, if it increaes the minimum power level above its current power level, increase its power level accordingly.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="infrastructure_supportfacility.png" alt="Support Facility icon">
+                  </span>
+                  <span class="title-text">Support Facility</span>
+                </h3>
+                <p class="subrule-flavor">From promethium fuelling facilities and orbital docks to astropathic sanctums, biomass larders, shrines to the gods, or colossal translocation gates, these facilities provide battle groups with the means to swiftly cross interstellar gulfs.</p>
+                <p class="rules-text">For players who are part of this support facility's alliance, planets at a distance of 2 from it are now considered connected to it ("nearby"), <strong>but not vice versa.</strong></p>
+                <p class="rules-text"><strong>Official Guidance:</strong> <i>We recommend placing support facilities near the parts of the campaign map where you wish to attack soon.</i></p>
+              </div>
+
+              <div class="subrule-card stack-sm">
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="infrastructure_fortificationline.png" alt="Fortification Line icon">
+                  </span>
+                  <span class="title-text">Fortification Line</span>
+                </h3>
+                <p class="subrule-flavor">Some fortifications are unsubtle things: miles-long curtain walls, hulking scrap forts, or trench networks bristling with guns. Others are more subtle, be they webs of illusion, sorcerous snares, or layers of invisible force fields. All achieve the same purpose: to stymie the foe's advance.</p>
+                <p class="rules-text">The minimum power level of this fortification line's alliance at this planet is increased by 1. When it's built, if it increases the minimum power level above its current power level, increase its power level accordingly.</p>
                 <p class="rules-text">Each time a rule would reduce the power level of the fortification line's alliance at this planet below the minimum, one of their fortification lines at this planet is destroyed instead.</p>
-                <p class="rules=text"><strong>Official Guidance: </strong><i>We recommend placing fortification lines on planets where your alliance has a high power level, to help blunt enemy attacks.</i></p>
+                <p class="rules-text"><strong>Official Guidance:</strong> <i>We recommend placing fortification lines on planets where your alliance has a high power level, to help blunt enemy attacks.</i></p>
               </div>
             </div>
           </div>
@@ -965,147 +1032,269 @@
 
         <section class="card rules-section">
           <button class="rules-toggle" type="button" aria-expanded="false">
-            <span class="toggle-title">Planetary Theatres</span>
+            <span class="toggle-title">Planetary Theaters</span>
             <span class="toggle-icon">▸</span>
           </button>
           <div class="rules-content stack-md">
-            <p class="rules-text">Each Theatre below has a dedicated sub-box for its tactical benefit, terrain guidance, and D6 results table.</p>
+            <p class="rules-text">Every planet has 2-3 potential theaters associated with it, identifiable on the campaign map by the symbols occupying the planet's theater slots.</p>
+            <p class="rules-text">When playing a game as part of this campaign (excluding potential games of Boarding Actions), in the relevant step of the mission sequence the attacker will be able to select one of the theaters from the planet the battle is taking place on. That player then rolls one D6 to determine which of that theater's twists will apply to the game.</p>
 
             <div class="subrule-grid">
               <div class="subrule-card stack-sm">
-                <h3>Spaceport</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Spaceport tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Spaceport tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_spaceport.png" alt="Spaceport icon">
+                  </span>
+                  <span class="title-text">Spaceport</span>
+                </h3>
+                <p class="subrule-flavor">Packed with communication and coordination technologies, spaceports not only facilitate rapid force deployment, but are also prime strategic hubs.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists make control of objective markers easier and provide improved reactive manoeuvrability, with units able to fall back and continue to operate effectively. It is suited to more elite armies that can take advantage of such rules to prevent their units from becoming bogged down and trapped by more numerous foes.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend using tall buildings and ruins as terrain features. These should be placed plentifully across the battlefield, but with gaps between them wide enough for larger vehicles and monsters to navigate. Some of these can be connected with barricades to represent cordons and barricades.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Spaceport result here.</li>
-                  <li><strong>2:</strong> Add Spaceport result here.</li>
-                  <li><strong>3:</strong> Add Spaceport result here.</li>
-                  <li><strong>4:</strong> Add Spaceport result here.</li>
-                  <li><strong>5:</strong> Add Spaceport result here.</li>
-                  <li><strong>6:</strong> Add Spaceport result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Coordinate Lock:</strong> At the end of the Command phase, for each objective marker the player whose turn it is controls, that objective marker remains under their control until their opponent's Level of Control over that objective marker is greater than theirs at the end of a phase.</li>
+                  <li><strong>3-4 — Vid-feed Network:</strong> Each time a unit from a player's army Falls Back, they can select one of the following: until the end of the turn, that unit is eligible to shoot in a turn in which it fell back; or, until the end of the turn, that unit is eligible to declare a charge in a turn in which it fell back.</li>
+                  <li><strong>5-6 — Embarkation Shrines:</strong> At the end of each player's turn, their opponent can select one unit from their own army that is within range of one or more objective markers and not within engagement range of one or more enemy units. If they do, that unit is removed from the battlefield and placed into strategic reserves.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Desolate Wastes</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Desolate Wastes tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Desolate Wastes tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_desolatewastes.png" alt="Desolate Wastes icon">
+                  </span>
+                  <span class="title-text">Desolate Wastes</span>
+                </h3>
+                <p class="subrule-flavor">Whether polluted wastelands, endless ferrocrete expanses, or dry grassland, these wind-scoured regions are open, largely empty, and often easily traversed.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists are particularly suited to skirmishing forces largely comprising infantry and mounted units, enabling them to deploy more aggressively and reposition themselves later in the game.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend using lots of area terrain features with a smaller footprint, to represent nomad camps and scattered outcroppings. These can be scattered through no man’s land to indicate a largely uninhabited wilderness region.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Desolate Wastes result here.</li>
-                  <li><strong>2:</strong> Add Desolate Wastes result here.</li>
-                  <li><strong>3:</strong> Add Desolate Wastes result here.</li>
-                  <li><strong>4:</strong> Add Desolate Wastes result here.</li>
-                  <li><strong>5:</strong> Add Desolate Wastes result here.</li>
-                  <li><strong>6:</strong> Add Desolate Wastes result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Open Ground:</strong> Players can re-roll advance and charge rolls made for units from their army (excluding monsters and vehicles).</li>
+                  <li><strong>3-4 — Eye of Judgement:</strong> At the end of the Declare Battle Formations step, starting with the attacker, each player selects up to two units from their army (excluding monsters and vehicles). Models in those units have the Scouts 6" ability.</li>
+                  <li><strong>5-6 — Exposed Combatants:</strong> Ranged weapons equipped by models (excluding monsters and vehicles) have the Assault ability.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Xenoflora Jungle</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Xenoflora Jungle tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Xenoflora Jungle tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_xenoflorajungle.png" alt="Xenoflora Jungle icon">
+                  </span>
+                  <span class="title-text">Xenoflora Jungle</span>
+                </h3>
+                <p class="subrule-flavor">From temperate forest to seething jungle, regions overrun with alien undergrowth present a close and hazardous environment in which to do battle.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists provide a boost to melee-orientated armies, contributing improved damage dealing, protection from overwatch and punishment of units that fall back.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend using a mixture of woods and ruins to represent a largely forested region dotted with the remains of overgrown structures. There should be a large number of such terrain features scattered fairly equally across the battlefield, to reflect the sheer density of the area’s flora.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Xenoflora Jungle result here.</li>
-                  <li><strong>2:</strong> Add Xenoflora Jungle result here.</li>
-                  <li><strong>3:</strong> Add Xenoflora Jungle result here.</li>
-                  <li><strong>4:</strong> Add Xenoflora Jungle result here.</li>
-                  <li><strong>5:</strong> Add Xenoflora Jungle result here.</li>
-                  <li><strong>6:</strong> Add Xenoflora Jungle result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Slaughter Spores:</strong> Improve the Strength characteristic of melee weapons equipped by models by 1.</li>
+                  <li><strong>3-4 — Green Hell:</strong> Units cannot use the Fire Overwatch stratagem.</li>
+                  <li><strong>5-6 — Predatory Plantlife:</strong> Each time a unit (excluding monsters and vehicles) falls back, all models in that unit must take a Desperate Escape test. When doing so, if that unit is battle-shocked, subtract 1 from each of those tests.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Rad Zone</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Rad Zone tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Rad Zone tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_radzone.png" alt="Rad Zone icon">
+                  </span>
+                  <span class="title-text">Rad Zone</span>
+                </h3>
+                <p class="subrule-flavor">Rendered extremely hazardous by the impact of a rad warhead during the ongoing wars of reclamation, irradiated ash carpets this region as thickly as dense snowfall.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists cause significant disruption to communications and attempts to launch immediate attacks on the enemy, reducing lethality and improving the durability of units. It is suited to armies that favour a more attritional style of play.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend using tall hills to limit visibility. Ruins and buildings should not be placed on these hills, to represent clusters of hardened structures huddled in the more sheltered lowlands of this hostile theater.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Rad Zone result here.</li>
-                  <li><strong>2:</strong> Add Rad Zone result here.</li>
-                  <li><strong>3:</strong> Add Rad Zone result here.</li>
-                  <li><strong>4:</strong> Add Rad Zone result here.</li>
-                  <li><strong>5:</strong> Add Rad Zone result here.</li>
-                  <li><strong>6:</strong> Add Rad Zone result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Toxic Ash Storm:</strong> In battle round 2, each unit can only be the target of a ranged attack if the attacking model is within 18". In battle round 3, each unit can only be the target of a ranged attack if the attacking model is within 12". In battle round 4, each unit can only be the target of a ranged attack if the attacking model is within 18".</li>
+                  <li><strong>3-4 — Rad Malaise:</strong> Each time a model makes a melee attack that targets an enemy unit, if that enemy unit made a charge move this turn, add 1 to the hit roll.</li>
+                  <li><strong>5-6 — Esoteric Interference:</strong> Outside of the 1CP players gain at the start of the Command Phase, players cannot gain additional CP, regardless of the source.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Forge Complex</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Forge Complex tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Forge Complex tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_forgecomplex.png" alt="Forge Complex icon">
+                  </span>
+                  <span class="title-text">Forge Complex</span>
+                </h3>
+                <p class="subrule-flavor">Adeptus Mechanicus forge complexes can sprawl across entire continents, and do not stop their labours even should battle rage between their thundering machines and over their rivers of acid runoff.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists predominantly aid tough, durable units; those that are more numerous and lightly armoured will take increased damage as a result of the volatile gases, ferocious heat, and hostile elements present in such locations.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend using lots of obstacle terrain features and industrial pipes and machinery to represent the still-operational forge shrines and manufacturing lines of the complex.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Forge Complex result here.</li>
-                  <li><strong>2:</strong> Add Forge Complex result here.</li>
-                  <li><strong>3:</strong> Add Forge Complex result here.</li>
-                  <li><strong>4:</strong> Add Forge Complex result here.</li>
-                  <li><strong>5:</strong> Add Forge Complex result here.</li>
-                  <li><strong>6:</strong> Add Forge Complex result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Thermic Corrosion:</strong> Each time a model makes an attack that targets an enemy unit (excluding monsters and vehicles) within 9", improve the Armour Penetration characteristic of that attack by 1.</li>
+                  <li><strong>3-4 — Plasmic Venting:</strong> At the start of the battle round, if the plasmic venting has not occurred, the attacker rolls one D6: on a result equal to or less than the current battle round number, the plasmic venting occurs. When the steam vents rupture, roll one D6 for each unit not within range of one or more objective markers: if the result is equal to or greater than the Toughness characteristic of that unit, until the end of the battle round, that unit is pinned. While a unit is pinned, subtract 2" from its Move characteristic and subtract 2 from charge rolls made for it.</li>
+                  <li><strong>5-6 — Volatile Combustibles:</strong> Each time players determine how many attacks are made with a Blast weapon, add an additional 1 to the result.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Hab Sprawl</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Hab Sprawl tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Hab Sprawl tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_habsprawl.png" alt="Hab Sprawl icon">
+                  </span>
+                  <span class="title-text">Hab Sprawl</span>
+                </h3>
+                <p class="subrule-flavor">Many of the worlds designated part of Greater Ultramar are heavily settled, boasting hive cities and mile upon mile of hab blocks. When battle comes to such theaters it swiftly becomes a grinding city fight.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists provide a boost to units within area terrain features, increasing their survivability or lethality. As such, this theater is well suited to armies with large amounts of infantry that can take advantage of such terrain.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend a dense coverage of area terrain features, predominantly comprising ruins, placed evenly across the battlefield.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Hab Sprawl result here.</li>
-                  <li><strong>2:</strong> Add Hab Sprawl result here.</li>
-                  <li><strong>3:</strong> Add Hab Sprawl result here.</li>
-                  <li><strong>4:</strong> Add Hab Sprawl result here.</li>
-                  <li><strong>5:</strong> Add Hab Sprawl result here.</li>
-                  <li><strong>6:</strong> Add Hab Sprawl result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Rolling Fumes:</strong> While a model is wholly within an area terrain feature, that model has the Stealth ability.</li>
+                  <li><strong>3-4 — Firing Positions:</strong> While a unit is wholly within an area terrain feature, that unit can be targeted with the Fire Overwatch Stratagem for 0CP, and when doing so, hits are scored on unmodified hit rolls of 5+ while resolving that stratagem.</li>
+                  <li><strong>5-6 — Into the Depths:</strong> At the end of each player's turn, their opponent can select one unit from their own army that is wholly within an area terrain feature and not within engagement range of one or more enemy units. If they do, that unit is removed from the battlefield and placed into strategic reserves.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Delvesite Facility</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Delvesite Facility tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Delvesite Facility tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_delvesitefacility.png" alt="Delve Site Facility icon">
+                  </span>
+                  <span class="title-text">Delvesite Facility</span>
+                </h3>
+                <p class="subrule-flavor">Whether clashing in the flicker-lit depths of a mining delvesite or doing battle on the surface between pit heads and massed machinery, this is a hazardous theater for any force to fight in.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists primarily benefit attacks against tougher units, with scavenged explosives and jury-rigged mining machinery helping weaker models bring down imposing adversaries.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend using a good number of fuel pipes, containers, barrels, and barricades as well as Sector Fronteris structures to reflect mining infrastructure and rugged mine buildings. Some of these should be placed within each player's deployment zone, as well as in no man's land, to represent an interconnected network of this apparatus.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Delvesite Facility result here.</li>
-                  <li><strong>2:</strong> Add Delvesite Facility result here.</li>
-                  <li><strong>3:</strong> Add Delvesite Facility result here.</li>
-                  <li><strong>4:</strong> Add Delvesite Facility result here.</li>
-                  <li><strong>5:</strong> Add Delvesite Facility result here.</li>
-                  <li><strong>6:</strong> Add Delvesite Facility result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Sanctified Charges:</strong> At the start of the battle round, each player secretly selects and makes a note of one objective marker wholly within no man's land. For each player, once per battle, when an enemy unit ends a normal, advance or fall back move within range of their selected objective marker, that player can reveal that they selected that objective marker. If they do, roll one D6: on a 2+, that enemy unit suffers D6+1 mortal wounds.</li>
+                  <li><strong>3-4 — Crumbling Bedrock:</strong> Each time a model in a player's army makes a ranged attack that targets an enemy unit within 12", that player can ignore any or all modifiers to the following: the attack's Ballistic Skill, the hit roll, the wound roll.</li>
+                  <li><strong>5-6 — Tectonic Shock:</strong> Each time an attack targets a unit within range of one or more objective markers within no man's land, that attack has the Lethal Hits ability.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Dead Lands</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Dead Lands tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Dead Lands tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_deadlands.png" alt="Dead Lands icon">
+                  </span>
+                  <span class="title-text">Dead Lands</span>
+                </h3>
+                <p class="subrule-flavor">Be they regions reduced to lifeless desert by harsh stars, zones poisoned by heavy industry, or the blasted result of long-ago orbital bombardments, these bleak theaters often play host to clashes of heavy armour as they afford plentiful room for massed manoeuvres.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists primarily benefit monster and vehicle units, providing them with increased speed, durability and lethality.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend clustering some area terrain features together, with wider gaps between them to allow for increased monster and vehicle manoeuvrability, and to represent the intermittent outcroppings of settlements and geological features that cling on amidst the desolation.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Dead Lands result here.</li>
-                  <li><strong>2:</strong> Add Dead Lands result here.</li>
-                  <li><strong>3:</strong> Add Dead Lands result here.</li>
-                  <li><strong>4:</strong> Add Dead Lands result here.</li>
-                  <li><strong>5:</strong> Add Dead Lands result here.</li>
-                  <li><strong>6:</strong> Add Dead Lands result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Bleak Expanse:</strong> Add 3" to the Move characteristic of monster and vehicle units.</li>
+                  <li><strong>3-4 — Rocky Outcroppings:</strong> Each time a monster or vehicle unit remains stationary, until the end of the turn, each time a model in that unit makes a ranged attack, re-roll a hit roll of 1.</li>
+                  <li><strong>5-6 — Shroud of Dust:</strong> Each time a monster or vehicle unit from a player's army makes an advance move, until the start of that player's next turn, models in that unit have the Stealth ability.</li>
                 </ul>
               </div>
 
               <div class="subrule-card stack-sm">
-                <h3>Tomb Complex</h3>
-                <p class="rules-text"><strong>Tactical Benefit:</strong> Add the Tomb Complex tactical benefit here.</p>
-                <p class="rules-text"><strong>Recommended Terrain:</strong> Add the recommended terrain for Tomb Complex tables here.</p>
+                <h3 class="with-icon">
+                  <span class="icon-wrap">
+                    <img class="theater-icon" src="theater_tombcomplex.png" alt="Tomb Complex icon">
+                  </span>
+                  <span class="title-text">Tomb Complex</span>
+                </h3>
+                <p class="subrule-flavor">Necron tombs lurk beneath the surface of many worlds that Guilliman wishes claimed for his empire. As they wake, their eldritch structures rumble up from below to unleash terrible destruction.</p>
+                <p class="rules-text"><strong>Tactical Benefit:</strong> These twists are somewhat unpredictable. They do not necessarily suit any one particular army style, but can make for varied and interesting battles for those brave enough to use them.</p>
+                <p class="rules-text"><strong>Recommended Terrain:</strong> For this theater, we recommend that players use their imagination to create the kind of terrain layout that best fits their own narrative. Tomb complexes can be hidden below any other sort of landscape, although we do recommend mixing in a few esoteric pieces of terrain to represent the Necron architecture that has risen from below or phased into existence.</p>
                 <h4>D6 Results</h4>
-                <ul class="theatre-results">
-                  <li><strong>1:</strong> Add Tomb Complex result here.</li>
-                  <li><strong>2:</strong> Add Tomb Complex result here.</li>
-                  <li><strong>3:</strong> Add Tomb Complex result here.</li>
-                  <li><strong>4:</strong> Add Tomb Complex result here.</li>
-                  <li><strong>5:</strong> Add Tomb Complex result here.</li>
-                  <li><strong>6:</strong> Add Tomb Complex result here.</li>
+                <ul class="theater-results">
+                  <li><strong>1-2 — Space-time Compression:</strong> Add 2 to advance rolls.</li>
+                  <li><strong>3-4 — Overpowering Energies:</strong> Each time a unit is selected to shoot or fight, it can use this rule. If it does, until the end of the phase, add 2 to the Strength characteristic of weapons equipped by models in that unit and those weapons have the Hazardous ability.</li>
+                  <li><strong>5-6 — Quantum Shielding:</strong> Models have a 5+ invulnerable save against ranged attacks.</li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card rules-section">
+          <button class="rules-toggle" type="button" aria-expanded="false">
+            <span class="toggle-title">Vespator Front Events</span>
+            <span class="toggle-icon">▸</span>
+          </button>
+          <div class="rules-content stack-md">
+            <p class="rules-text">As the campaign progresses, additional events will be introduced into the campaign to maintain an exciting narrative. Some of these can happen in any phase of the campaign, but others will only take effect if one alliance begins to pull too far ahead or fall too far behind.</p>
+            <p class="rules-text">When the Warmaster (Nick) is called upon to generate any Vespator Front Events, he'll do the following:</p>
+            <ul>
+                <li>First, if one alliance is more than 5 campaign points ahead of each of the others, that alliance is said to be the Dominating Alliance, and the WM rolls one D6: On a 4+, the WM generates one Perils of Power event to take effect.</li>
+                <li>Then, if one alliance is more than 5 campaign points behind of each of the others, that alliance is said to be the Trailing Alliance and the WM rolls one D6: On a 4+, the WM generates one Desperate Measures event to take effect.</li>
+                <li>Finally, the WM rolls one D6, adding 1 to the result if it is the fourth campaign phase or later: On a 4+, the WM generates one Fortunes of War event to take effect.</li>
+            </ul>
+
+            <div class="events-grid">
+              <div class="event-card stack-sm">
+                <h3>D33: Fortunes of War</h3>
+                    <h4>11: Lull in the Fighting</h4>
+                    <p class="rules-text">Starting with the alliance with the highest point total and proceeding in descending order:</p>
+                    <ul>
+                        <li>That alliance can build one of the following pieces of infrastructure on a planet: Fortification Line; Support Facility; Staging Grounds.</li>
+                        <li>That alliance can move each of its fleets to one connected planet.</li>
+                    </ul>
+                    <h4>12: Void Piracy</h4>
+                    <p class="rules-text">In the next campaign phase:</p>
+                    <ul>
+                        <li>Fleets cannot declare the Void Leap operation.</li>
+                        <li>The Support Facility infrastructure rules do not take effect.</li>
+                    </ul>
+                    <h4>13: Tides of War</h4>
+                    <p class="rules-text">Starting with the alliance with the highest point total, and proceeding in descending order:</p>
+                    <ul>
+                        <li>That alliance can, if its Stronghold is not destroyed, remove it from the campaign map and then build a Stronghold on another planet.</li>
+                    </ul>
+                    <h4>21: Sinister Omens</h4>
+                    <p class="rules-text">In the next campaign phase:</p>
+                    <ul>
+                        <li>Fleets cannot declare the Logistical Auxilia operation.</li>
+                        <li>Each time a planet is attacked, the theater used is selected randomly, instead of by the player from the attacking Alliance.</li>
+                    </ul>
+
+                    <h4>22: Archeotech Riches</h4>
+                    <p class="rules-text">The WM selects the three planets with the lowest total combined power level of all alliances:</p>
+                    <ul>
+                        <li>At the end of the Process Battle Results step of the next campaign phase, for each of those planets, the alliance that won the most battles at that planet during that campaign phase has secured archeotech riches. Each time an alliance secures archeotech riches at a planet, they can do the following up to three times: select that planet or one nearby (1) to it, and increase their power level at that planet by 1.</li>
+                    </ul>
+                    <h4>23: Starvation and Disease</h4>
+                    <p class="rules-text">Subtract 1 from each Alliance’s Power Level at every Planet.</p>
+
+                    <h4>31: Xeno Beast Migration</h4>
+                    <p class="rules-text">Players in each alliance must secretly select new planets for their fleets to be placed at. When doing so, each fleet’s new location must be different to the planet it was previously at and not nearby (1) to that planet. The WM then updates the campaign map accordingly.</p>
+
+                    <h4>32: Machinations of Fate</h4>
+                    <p class="rules-text">Each player can secretly notify the WM that they wish to defect to another alliance, and if so, which alliance they wish to defect to.</p>
+                    <p class="rules-text">If one or more players wish to do so, the WM should try to move all players around so that each should end up with fleets for their desired alliance. If this is not possible then some players may not be able to defect and the WM will randomly decide which players can defect. Any unclaimed fleets are then assigned amongst the remaining players of the relevant alliances.</p>
+
+                    <h4>33: Stellar Storms</h4>
+                    <p class="rules-text">This event cannot take effect more than once during the campaign. If this event has already taken effect, generate a new Fortunes of War Event instead.</p>
+                    <p class="rules-text">The WM rolls one D6 for each planet with only one undestroyed infrastructure location: On a 4+, that infrastructure location is destroyed (note this can cause the planet to be destroyed).</p>
+
+              </div>
+
+            <div class="event-card stack-sm">
+            <h3>D3: Perils of Power</h3>
+            <h4>1: Cult Uprisings</h4>
+            <p class="rules-text">The WM selects one of the planets that the Dominating Alliance has its highest power level at, excluding one with their Stronghold on, to be the site of the uprising, then does the following:</p>
+            <ul>
+                <li>First, for each piece of infrastructure at that planet, roll one D6: On a 3-5, that piece of infrastructure is destroyed (without destroying the location); on a 6, that piece of infrastructure is destroyed and its infrastructure location is destroyed (note this can cause the planet to be destroyed).</li>
+                <li>Then, for each power level of the dominating alliance at that planet, roll one D6, subtracting 1 from the result if there is a fleet from that alliance at that planet: For each 4+, subtract 1 from that alliance’s power level at that planet.</li>
+            </ul>
+
+            <h4>2: Coordinated Opposition</h4>
+            <p class="rules-text">In the next campaign phase, each time a player fights a battle on a planet against the Dominating Alliance, they can treat their alliance’s power level at that planet as 1 higher or lower than it actually is for the purposes of that battle’s mission rules <b>and</b> campaign outcomes.</p>
+
+            <h4>3: An Open Tome</h4>
+            <p class="rules-text">In the next campaign phase, in the Select Operations step, the players of the Dominating Alliance must declare all of their fleets’ campaign operations, and reveal them to the players of the other alliances before those players declare their own fleets’ campaign operations.</p>
+            </div>
+
+            <div class="event-card stack-sm">
+            <h3>D3: Desperate Measures</h3>
+            <h4>1: A Costly Bargain</h4>
+            <p class="rules-text">The Trailing Alliance can select one planet (excluding any with one or more opposing Strongholds present), and one opposing alliance. Those two alliances switch their power level at that planet with one another.</p>
+
+            <h4>2: Defiant Zeal</h4>
+            <p class="rules-text">In the next campaign phase, each of the Trailing Alliance’s fleets can declare one additional campaign operation.</p>
+
+            <h4>3: Smuggled Assets</h4>
+            <p class="rules-text">For each piece of infrastructure the trailing alliance has on the campaign map, they can remove one piece of infrastructure of that type from the map. Each time they do, they can build one piece of that type of infrastructure on another planet. They can then build one additional piece of infrastructure (excluding a Stronghold) on any planet.</p>
+            </div>
+
             </div>
           </div>
         </section>
@@ -1175,15 +1364,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>001-IMP-NICK</td><td>Imperium</td><td>Nick</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>002-IMP-DANIEL</td><td>Imperium</td><td>Daniel</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>003-IMP-FLEX</td><td>Imperium</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>004-CHA-IAN</td><td>Chaos</td><td>Ian</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>005-CHA-JOSE</td><td>Chaos</td><td>Jose</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>006-CHA-FLEX</td><td>Chaos</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>007-XEN-DAVID</td><td>Xenos</td><td>David</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>008-XEN-KIERAN</td><td>Xenos</td><td>Kieran</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>009-XEN-RUSTY</td><td>Xenos</td><td>Rusty</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>001-IMP</td><td>Imperium</td><td>Nick</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>002-IMP</td><td>Imperium</td><td>Daniel</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>003-IMP</td><td>Imperium</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>004-CHA</td><td>Chaos</td><td>Ian</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>005-CHA</td><td>Chaos</td><td>Jose</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>006-CHA</td><td>Chaos</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>007-XEN</td><td>Xenos</td><td>David</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>008-XEN</td><td>Xenos</td><td>Kieran</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>009-XEN</td><td>Xenos</td><td>Rusty</td><td>1</td><td></td><td></td><td></td><td></td></tr>
             </tbody>
           </table>
         </div>
