@@ -492,6 +492,13 @@
       margin-bottom: 8px;
     }
 
+    .operation-card > h4:first-child,
+    .subrule-card > h4:first-child,
+    .setup-card > h4:first-child,
+    .event-card > h4:first-child {
+      margin-top: 0;
+    }
+
     .operation-flavor,
     .subrule-flavor,
     .event-flavor {
@@ -886,14 +893,14 @@
             <h3>Campaign Phase Structure</h3>
             <p class="rules-text">Each phase of the campaign is divided into the following steps:</p>
             <ul>
-                <li>1. Select Operations</li>
-                <li>2. Perform Operations</li>
-                <li>3. Results and Events</li>
-                <li>4. Move Fleets</li>
-                <li>5. Build Infrastructure</li>
+              <li>1. Select Operations</li>
+              <li>2. Perform Operations</li>
+              <li>3. Results and Events</li>
+              <li>4. Move Fleets</li>
+              <li>5. Build Infrastructure</li>
             </ul>
             <p class="rules-text"><a href="http://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front/">The campaign rules for the War on the Vespator Front can be found here.</a></p>
-        </div>
+          </div>
         </section>
 
         <section class="card rules-section">
@@ -911,17 +918,94 @@
                 <p class="operation-flavor">Battles must be fought for wars to be won and worlds to be claimed.</p>
                 <p class="operation-meta"><strong>When selecting this Campaign Operation, select one of the Campaign Attack Types below, then select this Fleet’s Planet or one connected to it, then select one opposing Alliance.</strong></p>
                 <p class="rules-text">In the Resolve Battle Operations stage, each Alliance will select players from their Alliance to defend against the Battle Operations declared against them this Campaign phase. For each of those Battle Operations, a player from that Alliance can be selected to play a game of Warhammer 40,000 against the player whose Fleet declared it. Each Campaign Attack Type has a bespoke mission that can be played, and a different set of Campaign Outcomes that will change the situation on the campaign map. Alternatively, players can play a different mission from another Warhammer 40,000 publication, then apply the Campaign Outcomes for the selected Campaign Attack Type after that battle.</p>
-                <p class="rules-text"><a href="http://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front/">The missions associated with each of the Campaign Attack Types can be found here.</a></p>
+                <p class="rules-text"><a href="http://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front/">The full campaign rules, including for the missions associated with each of the Campaign Attack Types, can be found here.</a></p>
+                <p class="rules-text"><b>All operations rules below are <i>previews</i>; see the full rules for details.</b></p>
+                
 
-                <h4>Campaign Attack Types</h4>
-                <ul>
-                  <li><strong>Seize Power Base:</strong> The attacking Alliance attempts to take over pieces of Infrastructure that the opposing Alliance has constructed at the selected Planet, or to destroy them in order to raise their own over the ruins.</li>
-                  <li><strong>Purge and Burn:</strong> The attacking Alliance attempts to reduce the Power Level of the opposing Alliance at the selected Planet by exterminating the foe and preventing them spreading elsewhere; this is particularly beneficial if the attacking Alliance has a higher Power Level.</li>
-                  <li><strong>Orbital Invasion:</strong> The attacking Alliance attempts to reduce the Power Level of the opposing Alliance at the selected Planet by seizing a beachhead and pouring in reinforcements to hold off the surrounding foe; this is particularly beneficial if the attacking Alliance has a lower Power Level.</li>
-                  <li><strong>Planetary Bombardment:</strong> By weakening the defender’s protection and making them vulnerable to a catastrophic bombardment, the attacking Alliance attempts to destroy the Planet’s Infrastructure locations, and potentially make the Planet uncontrollable.</li>
-                  <li><strong>Supply Base Raid:</strong> The attacking Alliance attempts sabotage or theft at a key site such as a shipyard, transit hub, or way station. Their aim is to reduce the defender’s ability to move resources and reinforcements to and from the Planet, reducing the Power Level of the opposing Alliance here or at connected Planets.</li>
-                  <li><strong>Boarding Action:</strong> The attacking Alliance strikes at an opposing Alliance’s Fleet stationed in orbit at an opposing Alliance’s Planet, aiming to cause enough destruction to force the defending Fleet to relocate to another system.</li>
-                </ul>
+                <div class="subrule-grid">
+                  <div class="subrule-card stack-sm">
+                    <h4>Seize Power Base</h4>
+                    <p class="rules-text"><i>The attacking Alliance attempts to take over pieces of Infrastructure that the opposing Alliance has constructed at the selected Planet, or to destroy them in order to raise their own over the ruins</i></p>
+                    <p class="rules-text"><strong>Summary:</strong></p>
+                    <ul>
+                        <li>Attacker goes first</li>
+                        <li>Objective markers get auras depending on defending infrastructure</li>
+                        <li>Objective markers provide deployment options to defender</li>
+                        <li>Some attacker units get Scouts 6"</li>
+                        <li><strong>On attacker win:</strong> Destroy defender infrastructure and attacker builds infrastructure; if the attacker alliance has a power level of 3 or more at planet, they build infrastructure; add 1 to attacker alliance power level at planet</li>
+                        <li><strong>On defender win:</strong> Defender builds fortification lines infrastructure, unless their power level is 3 or more at planet, in which case they can build staging grounds instead (their choice); add 1 to defender alliance power level at planet</li>
+                        <li><strong>On draw:</strong> Add 1 to the attacker alliance power level at planet</li>
+                    </ul>
+                  </div>
+
+                  <div class="subrule-card stack-sm">
+                    <h4>Purge and Burn</h4>
+                    <p class="rules-text"><i>The attacking Alliance attempts to reduce the Power Level of the opposing Alliance at the selected Planet by exterminating the foe and preventing them spreading elsewhere; this is particularly beneficial if the attacking Alliance has a higher Power Level</i></p>
+                    <p class="rules-text"><strong>Summary:</strong></p>
+                    <ul>
+                        <li>Defender goes first</li>
+                        <li>Defender places ambush markers, which cause mortal wounds to nearby units</li>
+                        <li>Attacker chooses some defender units to take battle-shock tests and have reduced movement</li>
+                        <li>Attackers get victory points for destroying defender units; defenders get victory points for defender units near attacker battlefield edge</li>
+                        <li><strong>On attacker win: </strong>If attacker alliance power level is equal to or greater than defender alliance power level at planet, reduce defender alliance power level at planet by 1; add 1 to attacker alliance power level at planet</li>
+                        <li><strong>On defender win: </strong>The defender can reduce the defender alliance power level at planet by any amount, and for each time they do they can add 1 to their alliance power level at one nearby (1) planet; add 1 to defender alliance power level at a nearby (1) planet</li>
+                        <li><strong>On draw: </strong>Add 1 to the attacker alliance power level at planet</li>
+                    </ul>
+                  </div>
+
+                  <div class="subrule-card stack-sm">
+                    <h4>Orbital Invasion</h4>
+                    <p class="rules-text"><i>The attacking Alliance attempts to reduce the Power Level of the opposing Alliance at the selected Planet by seizing a beachhead and pouring in reinforcements to hold off the surrounding foe; this is particularly beneficial if the attacking Alliance has a lower Power Level</i></p>
+                    <p class="rules-text"><strong>Summary:</strong></p>
+                    <ul>
+                        <li>Some attacker units get deep strike</li>
+                        <li>Attacker deep strike units can set up closer to enemies (they can't charge on the same turn if they do)</li>
+                        <li>Attacker begins surrounded</li>
+                        <li><strong>On attacker win: </strong>If attacker alliance power level is less than defender alliance power level at planet, subtract 1 from defender alliance power level at planet; add 1 to attacker alliance power level at planet</li>
+                        <li><strong>On defender win: </strong>Defender chooses a nearby (1) connected planet, then: Defender removes any amount of defender infrastructure at battle planet, and builds the same number and type of infrastructure at connected planet; defender removes any amount of defender infrastructure at connected planet, and builds the same number and type of infrastructure at battle planet; add 1 to defender alliance power level at battle planet</li>
+                        <li><strong>On draw: </strong>Add 1 to the attacker alliance power level at planet</li>
+                    </ul>
+                  </div>
+
+                  <div class="subrule-card stack-sm">
+                    <h4>Planetary Bombardment</h4>
+                    <p class="rules-text"><i>By weakening the defender’s protection and making them vulnerable to a catastrophic bombardment, the attacking Alliance attempts to destroy the Planet’s Infrastructure locations, and potentially make the Planet uncontrollable</i></p>
+                    <p class="rules-text"><strong>Summary:</strong></p>
+                    <ul>
+                        <li>Attacker goes first</li>
+                        <li>Some attacker units get infiltrators</li>
+                        <li>Defender has opportunity to increase defender alliance power level at planet in-battle</li>
+                        <li><strong>On attacker win: </strong> Attacker chooses non-Stronghold infrastructure slot at planet, chance to destroy infrastructure; add 1 to the attacker alliance power level at planet</li>
+                        <li><strong>On defender win: </strong> Defender chooses one nearby (1) planet, chance to destroy one or more attacker infrastructure there; add 1 to the defender alliance power level at planet</li>
+                        <li><strong>On draw: </strong>Add 1 to the attacker alliance power level at planet</li>
+                    </ul>
+                  </div>
+
+                  <div class="subrule-card stack-sm">
+                    <h4>Supply Base Raid</h4>
+                    <p class="rules-text"><i>The attacking Alliance attempts sabotage or theft at a key site such as a shipyard, transit hub, or way station. Their aim is to reduce the defender’s ability to move resources and reinforcements to and from the Planet, reducing the Power Level of the opposing Alliance here or at connected Planets</i></p>
+                    <p class="rules-text"><strong>Summary:</strong></p>
+                    <ul>
+                        <li>Attacker goes first</li>
+                        <li>Objective markers potentially cause mortal wounds to nearby defender units</li>
+                        <li><strong>On attacker win: </strong>Attacker selects nearby (1) planet, with chance to reduce defender alliance power level at selected planet; add 1 to attacker alliance power level at battle planet</li>
+                        <li><strong>On defender win: </strong>Subtract 1 from attacker alliance power level at planet, or at nearby (1) planet if defender alliance power level at battle planet is 3 or more; add 1 to to defender alliance power level at planet</li>
+                        <li><strong>On draw: </strong>Add 1 to the attacker alliance power level at planet</li>
+                    </ul>
+                  </div>
+
+                  <div class="subrule-card stack-sm">
+                    <h4>Boarding Action</h4>
+                    <p class="rules-text"><i>The attacking Alliance strikes at an opposing Alliance’s Fleet stationed in orbit at an opposing Alliance’s Planet, aiming to cause enough destruction to force the defending Fleet to relocate to another system</i></p>
+                    <p class="rules-text">If both the attacker and defender agree, this battle may be played out as a mission of Boarding Actions. Otherwise, play a normal game mode that both players agree upon.</p>
+                    <p class="rules-text"><strong>Summary:</strong></p>
+                    <ul>
+                        <li><strong>On attacker win: </strong>Attacker can select one defender alliance fleet at planet and move that fleet up to two times; add 1 to the attacker alliance power level at planet</li>
+                        <li><strong>On defender win: </strong>Attacker fleet cannot move at the end of this phase; defender can select one attacker fleet at planet and move that fleet one time; add 1 to the defender alliance power level at planet</li>
+                        <li><strong>On draw: </strong>Add 1 to the attacker alliance power level at planet</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               <div class="operation-card stack-sm">
@@ -1214,87 +1298,77 @@
             <p class="rules-text">As the campaign progresses, additional events will be introduced into the campaign to maintain an exciting narrative. Some of these can happen in any phase of the campaign, but others will only take effect if one alliance begins to pull too far ahead or fall too far behind.</p>
             <p class="rules-text">When the Warmaster (Nick) is called upon to generate any Vespator Front Events, he'll do the following:</p>
             <ul>
-                <li>First, if one alliance is more than 5 campaign points ahead of each of the others, that alliance is said to be the Dominating Alliance, and the WM rolls one D6: On a 4+, the WM generates one Perils of Power event to take effect.</li>
-                <li>Then, if one alliance is more than 5 campaign points behind of each of the others, that alliance is said to be the Trailing Alliance and the WM rolls one D6: On a 4+, the WM generates one Desperate Measures event to take effect.</li>
-                <li>Finally, the WM rolls one D6, adding 1 to the result if it is the fourth campaign phase or later: On a 4+, the WM generates one Fortunes of War event to take effect.</li>
+              <li>First, if one alliance is more than 5 campaign points ahead of each of the others, that alliance is said to be the Dominating Alliance, and the WM rolls one D6: On a 4+, the WM generates one Perils of Power event to take effect.</li>
+              <li>Then, if one alliance is more than 5 campaign points behind of each of the others, that alliance is said to be the Trailing Alliance and the WM rolls one D6: On a 4+, the WM generates one Desperate Measures event to take effect.</li>
+              <li>Finally, the WM rolls one D6, adding 1 to the result if it is the fourth campaign phase or later: On a 4+, the WM generates one Fortunes of War event to take effect.</li>
             </ul>
 
             <div class="events-grid">
               <div class="event-card stack-sm">
                 <h3>D33: Fortunes of War</h3>
-                    <h4>11: Lull in the Fighting</h4>
-                    <p class="rules-text">Starting with the alliance with the highest point total and proceeding in descending order:</p>
-                    <ul>
-                        <li>That alliance can build one of the following pieces of infrastructure on a planet: Fortification Line; Support Facility; Staging Grounds.</li>
-                        <li>That alliance can move each of its fleets to one connected planet.</li>
-                    </ul>
-                    <h4>12: Void Piracy</h4>
-                    <p class="rules-text">In the next campaign phase:</p>
-                    <ul>
-                        <li>Fleets cannot declare the Void Leap operation.</li>
-                        <li>The Support Facility infrastructure rules do not take effect.</li>
-                    </ul>
-                    <h4>13: Tides of War</h4>
-                    <p class="rules-text">Starting with the alliance with the highest point total, and proceeding in descending order:</p>
-                    <ul>
-                        <li>That alliance can, if its Stronghold is not destroyed, remove it from the campaign map and then build a Stronghold on another planet.</li>
-                    </ul>
-                    <h4>21: Sinister Omens</h4>
-                    <p class="rules-text">In the next campaign phase:</p>
-                    <ul>
-                        <li>Fleets cannot declare the Logistical Auxilia operation.</li>
-                        <li>Each time a planet is attacked, the theater used is selected randomly, instead of by the player from the attacking Alliance.</li>
-                    </ul>
-
-                    <h4>22: Archeotech Riches</h4>
-                    <p class="rules-text">The WM selects the three planets with the lowest total combined power level of all alliances:</p>
-                    <ul>
-                        <li>At the end of the Process Battle Results step of the next campaign phase, for each of those planets, the alliance that won the most battles at that planet during that campaign phase has secured archeotech riches. Each time an alliance secures archeotech riches at a planet, they can do the following up to three times: select that planet or one nearby (1) to it, and increase their power level at that planet by 1.</li>
-                    </ul>
-                    <h4>23: Starvation and Disease</h4>
-                    <p class="rules-text">Subtract 1 from each Alliance’s Power Level at every Planet.</p>
-
-                    <h4>31: Xeno Beast Migration</h4>
-                    <p class="rules-text">Players in each alliance must secretly select new planets for their fleets to be placed at. When doing so, each fleet’s new location must be different to the planet it was previously at and not nearby (1) to that planet. The WM then updates the campaign map accordingly.</p>
-
-                    <h4>32: Machinations of Fate</h4>
-                    <p class="rules-text">Each player can secretly notify the WM that they wish to defect to another alliance, and if so, which alliance they wish to defect to.</p>
-                    <p class="rules-text">If one or more players wish to do so, the WM should try to move all players around so that each should end up with fleets for their desired alliance. If this is not possible then some players may not be able to defect and the WM will randomly decide which players can defect. Any unclaimed fleets are then assigned amongst the remaining players of the relevant alliances.</p>
-
-                    <h4>33: Stellar Storms</h4>
-                    <p class="rules-text">This event cannot take effect more than once during the campaign. If this event has already taken effect, generate a new Fortunes of War Event instead.</p>
-                    <p class="rules-text">The WM rolls one D6 for each planet with only one undestroyed infrastructure location: On a 4+, that infrastructure location is destroyed (note this can cause the planet to be destroyed).</p>
-
+                <h4>11: Lull in the Fighting</h4>
+                <p class="rules-text">Starting with the alliance with the highest point total and proceeding in descending order:</p>
+                <ul>
+                  <li>That alliance can build one of the following pieces of infrastructure on a planet: Fortification Line; Support Facility; Staging Grounds.</li>
+                  <li>That alliance can move each of its fleets to one connected planet.</li>
+                </ul>
+                <h4>12: Void Piracy</h4>
+                <p class="rules-text">In the next campaign phase:</p>
+                <ul>
+                  <li>Fleets cannot declare the Void Leap operation.</li>
+                  <li>The Support Facility infrastructure rules do not take effect.</li>
+                </ul>
+                <h4>13: Tides of War</h4>
+                <p class="rules-text">Starting with the alliance with the highest point total, and proceeding in descending order:</p>
+                <ul>
+                  <li>That alliance can, if its Stronghold is not destroyed, remove it from the campaign map and then build a Stronghold on another planet.</li>
+                </ul>
+                <h4>21: Sinister Omens</h4>
+                <p class="rules-text">In the next campaign phase:</p>
+                <ul>
+                  <li>Fleets cannot declare the Logistical Auxilia operation.</li>
+                  <li>Each time a planet is attacked, the theater used is selected randomly, instead of by the player from the attacking Alliance.</li>
+                </ul>
+                <h4>22: Archeotech Riches</h4>
+                <p class="rules-text">The WM selects the three planets with the lowest total combined power level of all alliances:</p>
+                <ul>
+                  <li>At the end of the Process Battle Results step of the next campaign phase, for each of those planets, the alliance that won the most battles at that planet during that campaign phase has secured archeotech riches. Each time an alliance secures archeotech riches at a planet, they can do the following up to three times: select that planet or one nearby (1) to it, and increase their power level at that planet by 1.</li>
+                </ul>
+                <h4>23: Starvation and Disease</h4>
+                <p class="rules-text">Subtract 1 from each Alliance’s Power Level at every Planet.</p>
+                <h4>31: Xeno Beast Migration</h4>
+                <p class="rules-text">Players in each alliance must secretly select new planets for their fleets to be placed at. When doing so, each fleet’s new location must be different to the planet it was previously at and not nearby (1) to that planet. The WM then updates the campaign map accordingly.</p>
+                <h4>32: Machinations of Fate</h4>
+                <p class="rules-text">Each player can secretly notify the WM that they wish to defect to another alliance, and if so, which alliance they wish to defect to.</p>
+                <p class="rules-text">If one or more players wish to do so, the WM should try to move all players around so that each should end up with fleets for their desired alliance. If this is not possible then some players may not be able to defect and the WM will randomly decide which players can defect. Any unclaimed fleets are then assigned amongst the remaining players of the relevant alliances.</p>
+                <h4>33: Stellar Storms</h4>
+                <p class="rules-text">This event cannot take effect more than once during the campaign. If this event has already taken effect, generate a new Fortunes of War Event instead.</p>
+                <p class="rules-text">The WM rolls one D6 for each planet with only one undestroyed infrastructure location: On a 4+, that infrastructure location is destroyed (note this can cause the planet to be destroyed).</p>
               </div>
 
-            <div class="event-card stack-sm">
-            <h3>D3: Perils of Power</h3>
-            <h4>1: Cult Uprisings</h4>
-            <p class="rules-text">The WM selects one of the planets that the Dominating Alliance has its highest power level at, excluding one with their Stronghold on, to be the site of the uprising, then does the following:</p>
-            <ul>
-                <li>First, for each piece of infrastructure at that planet, roll one D6: On a 3-5, that piece of infrastructure is destroyed (without destroying the location); on a 6, that piece of infrastructure is destroyed and its infrastructure location is destroyed (note this can cause the planet to be destroyed).</li>
-                <li>Then, for each power level of the dominating alliance at that planet, roll one D6, subtracting 1 from the result if there is a fleet from that alliance at that planet: For each 4+, subtract 1 from that alliance’s power level at that planet.</li>
-            </ul>
+              <div class="event-card stack-sm">
+                <h3>D3: Perils of Power</h3>
+                <h4>1: Cult Uprisings</h4>
+                <p class="rules-text">The WM selects one of the planets that the Dominating Alliance has its highest power level at, excluding one with their Stronghold on, to be the site of the uprising, then does the following:</p>
+                <ul>
+                  <li>First, for each piece of infrastructure at that planet, roll one D6: On a 3-5, that piece of infrastructure is destroyed (without destroying the location); on a 6, that piece of infrastructure is destroyed and its infrastructure location is destroyed (note this can cause the planet to be destroyed).</li>
+                  <li>Then, for each power level of the dominating alliance at that planet, roll one D6, subtracting 1 from the result if there is a fleet from that alliance at that planet: For each 4+, subtract 1 from that alliance’s power level at that planet.</li>
+                </ul>
+                <h4>2: Coordinated Opposition</h4>
+                <p class="rules-text">In the next campaign phase, each time a player fights a battle on a planet against the Dominating Alliance, they can treat their alliance’s power level at that planet as 1 higher or lower than it actually is for the purposes of that battle’s mission rules <b>and</b> campaign outcomes.</p>
+                <h4>3: An Open Tome</h4>
+                <p class="rules-text">In the next campaign phase, in the Select Operations step, the players of the Dominating Alliance must declare all of their fleets’ campaign operations, and reveal them to the players of the other alliances before those players declare their own fleets’ campaign operations.</p>
+              </div>
 
-            <h4>2: Coordinated Opposition</h4>
-            <p class="rules-text">In the next campaign phase, each time a player fights a battle on a planet against the Dominating Alliance, they can treat their alliance’s power level at that planet as 1 higher or lower than it actually is for the purposes of that battle’s mission rules <b>and</b> campaign outcomes.</p>
-
-            <h4>3: An Open Tome</h4>
-            <p class="rules-text">In the next campaign phase, in the Select Operations step, the players of the Dominating Alliance must declare all of their fleets’ campaign operations, and reveal them to the players of the other alliances before those players declare their own fleets’ campaign operations.</p>
-            </div>
-
-            <div class="event-card stack-sm">
-            <h3>D3: Desperate Measures</h3>
-            <h4>1: A Costly Bargain</h4>
-            <p class="rules-text">The Trailing Alliance can select one planet (excluding any with one or more opposing Strongholds present), and one opposing alliance. Those two alliances switch their power level at that planet with one another.</p>
-
-            <h4>2: Defiant Zeal</h4>
-            <p class="rules-text">In the next campaign phase, each of the Trailing Alliance’s fleets can declare one additional campaign operation.</p>
-
-            <h4>3: Smuggled Assets</h4>
-            <p class="rules-text">For each piece of infrastructure the Trailing Alliance has on the campaign map, they can remove one piece of infrastructure of that type from the map. Each time they do, they can build one piece of that type of infrastructure on another planet. They can then build one additional piece of infrastructure (excluding a Stronghold) on any planet.</p>
-            </div>
-
+              <div class="event-card stack-sm">
+                <h3>D3: Desperate Measures</h3>
+                <h4>1: A Costly Bargain</h4>
+                <p class="rules-text">The Trailing Alliance can select one planet (excluding any with one or more opposing Strongholds present), and one opposing alliance. Those two alliances switch their power level at that planet with one another.</p>
+                <h4>2: Defiant Zeal</h4>
+                <p class="rules-text">In the next campaign phase, each of the Trailing Alliance’s fleets can declare one additional campaign operation.</p>
+                <h4>3: Smuggled Assets</h4>
+                <p class="rules-text">For each piece of infrastructure the Trailing Alliance has on the campaign map, they can remove one piece of infrastructure of that type from the map. Each time they do, they can build one piece of that type of infrastructure on another planet. They can then build one additional piece of infrastructure (excluding a Stronghold) on any planet.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -1364,15 +1438,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>001-IMP</td><td>Imperium</td><td>Nick</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>002-IMP</td><td>Imperium</td><td>Daniel</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>003-IMP</td><td>Imperium</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>004-CHA</td><td>Chaos</td><td>Ian</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>005-CHA</td><td>Chaos</td><td>Jose</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>006-CHA</td><td>Chaos</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>007-XEN</td><td>Xenos</td><td>David</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>008-XEN</td><td>Xenos</td><td>Kieran</td><td>1</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td>009-XEN</td><td>Xenos</td><td>Rusty</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>001-IMP-NICK</td><td>Imperium</td><td>Nick</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>002-IMP-DANIEL</td><td>Imperium</td><td>Daniel</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>003-IMP-FLEX</td><td>Imperium</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>004-CHA-IAN</td><td>Chaos</td><td>Ian</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>005-CHA-JOSE</td><td>Chaos</td><td>Jose</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>006-CHA-FLEX</td><td>Chaos</td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>007-XEN-DAVID</td><td>Xenos</td><td>David</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>008-XEN-KIERAN</td><td>Xenos</td><td>Kieran</td><td>1</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td>009-XEN-RUSTY</td><td>Xenos</td><td>Rusty</td><td>1</td><td></td><td></td><td></td><td></td></tr>
             </tbody>
           </table>
         </div>
