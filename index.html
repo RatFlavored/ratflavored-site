@@ -197,15 +197,20 @@
       border-collapse: collapse;
     }
 
-    .campaign-table th,
-    .campaign-table td {
-      padding: 10px 10px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      vertical-align: middle;
-      white-space: nowrap;
-      font-size: 0.95rem;
-    }
+  .campaign-table th,
+  .campaign-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+
+.campaign-table th:nth-child(n+3),
+.campaign-table td:nth-child(n+3) {
+  text-align: center;
+}
 
     .campaign-table th {
       background: var(--header-bg);
