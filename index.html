@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -357,6 +358,37 @@
     .history-table th.sort-desc::after {
       content: " ▼";
       font-size: 0.72rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reset-sort-button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .reset-sort-button:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .reset-sort-button:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.35);
+      outline-offset: 2px;
     }
 
     .rules-list {
@@ -1389,7 +1421,11 @@
 
     <section class="tab-panel" id="panel-log" role="tabpanel" aria-labelledby="tab-log" hidden>
       <section class="card stack-md">
-        <h2>campaign Log</h2>
+        <div class="section-header">
+          <h2>Campaign Log</h2>
+          <button type="button" class="reset-sort-button" id="resetHistorySort">Reset Sort</button>
+        </div>
+        <p class="section-note">Click headers to sort.</p>
         <div class="table-wrap">
           <table class="history-table sortable-table" id="historyTable">
             <thead>
@@ -1501,6 +1537,11 @@
     document.querySelectorAll(".sortable-table").forEach((table) => {
       const headers = table.querySelectorAll("th");
       const tbody = table.querySelector("tbody");
+      const originalRows = Array.from(tbody.querySelectorAll("tr"));
+
+      function clearSortIndicators() {
+        headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+      }
 
       headers.forEach((header, index) => {
         header.setAttribute("role", "button");
@@ -1516,7 +1557,7 @@
           const sortType = header.dataset.sortType || "text";
           const rows = Array.from(tbody.querySelectorAll("tr"));
 
-          headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+          clearSortIndicators();
           header.classList.add(nextDirection === "asc" ? "sort-asc" : "sort-desc");
 
           rows.sort((rowA, rowB) => {
@@ -1536,6 +1577,17 @@
           }
         });
       });
+
+      if (table.id === "historyTable") {
+        const resetButton = document.getElementById("resetHistorySort");
+
+        if (resetButton) {
+          resetButton.addEventListener("click", () => {
+            clearSortIndicators();
+            originalRows.forEach((row) => tbody.appendChild(row));
+          });
+        }
+      }
     });
 
     document.querySelectorAll('.rules-toggle').forEach(toggle => {
