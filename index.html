@@ -313,6 +313,23 @@
       display: none;
     }
 
+.history-table tr.campaign-event-row td {
+  background: rgba(110, 150, 110, 0.22);
+  color: var(--text);
+  font-style: italic;
+  white-space: normal;
+  border-bottom: 1px solid rgba(170, 220, 170, 0.18);
+}
+
+.history-table tr.campaign-event-row:hover td {
+  background: rgba(110, 150, 110, 0.28);
+}
+
+.history-table td.campaign-event-cell {
+  padding: 12px 14px;
+  text-align: left;
+}
+    
     .history-table {
       width: 100%;
       border-collapse: separate;
@@ -1544,6 +1561,13 @@
         <td></td>
       
       </tr>
+
+      <tr class="campaign-event-row">
+  <td class="campaign-event-cell" colspan="14">
+    <strong>Campaign Event:</strong> Your prose here.
+  </td>
+</tr>
+      
     </tbody>
   </table>
 </div>
