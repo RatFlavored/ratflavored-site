@@ -1576,160 +1576,196 @@
   </div>
 
   <script>
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanels = document.querySelectorAll('.tab-panel');
 
-    function activateTab(tabName) {
-      tabButtons.forEach(button => {
-        const isActive = button.dataset.tab === tabName;
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        button.setAttribute('tabindex', isActive ? '0' : '-1');
-      });
-
-      tabPanels.forEach(panel => {
-        const isActive = panel.id === `panel-${tabName}`;
-        panel.classList.toggle('active', isActive);
-        panel.hidden = !isActive;
-      });
-
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    }
-
-    tabButtons.forEach((button, index) => {
-      button.addEventListener('click', () => activateTab(button.dataset.tab));
-
-      button.addEventListener('keydown', event => {
-        let nextIndex = null;
-
-        if (event.key === 'ArrowRight') {
-          nextIndex = (index + 1) % tabButtons.length;
-        } else if (event.key === 'ArrowLeft') {
-          nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
-        } else if (event.key === 'Home') {
-          nextIndex = 0;
-        } else if (event.key === 'End') {
-          nextIndex = tabButtons.length - 1;
-        }
-
-        if (nextIndex !== null) {
-          event.preventDefault();
-          tabButtons[nextIndex].focus();
-          activateTab(tabButtons[nextIndex].dataset.tab);
-        }
-      });
+  function activateTab(tabName) {
+    tabButtons.forEach(button => {
+      const isActive = button.dataset.tab === tabName;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      button.setAttribute('tabindex', isActive ? '0' : '-1');
     });
 
-    document.querySelectorAll('.Alliance-summary').forEach(row => {
-      function toggleGroup() {
-        const targetId = row.getAttribute('data-target');
-        const group = document.getElementById(targetId);
-        const expanded = row.getAttribute('aria-expanded') === 'true';
-
-        row.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        group.classList.toggle('hidden');
-      }
-
-      row.addEventListener('click', toggleGroup);
-
-      row.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          toggleGroup();
-        }
-      });
+    tabPanels.forEach(panel => {
+      const isActive = panel.id === `panel-${tabName}`;
+      panel.classList.toggle('active', isActive);
+      panel.hidden = !isActive;
     });
 
-    function getCellValue(row, index) {
-      return row.children[index] ? row.children[index].innerText.trim() : "";
-    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
 
-    function compareValues(a, b, type, direction) {
-      if (type === "number") {
-        const numA = parseFloat(a) || 0;
-        const numB = parseFloat(b) || 0;
-        return direction === "asc" ? numA - numB : numB - numA;
-      }
-      return direction === "asc"
-        ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
-        : b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
-    }
+  tabButtons.forEach((button, index) => {
+    button.addEventListener('click', () => activateTab(button.dataset.tab));
 
-    document.querySelectorAll(".sortable-table").forEach((table) => {
-      const headers = table.querySelectorAll("th");
-      const tbody = table.querySelector("tbody");
-      const originalRows = Array.from(tbody.querySelectorAll("tr"));
+    button.addEventListener('keydown', event => {
+      let nextIndex = null;
 
-      function clearSortIndicators() {
-        headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+      if (event.key === 'ArrowRight') {
+        nextIndex = (index + 1) % tabButtons.length;
+      } else if (event.key === 'ArrowLeft') {
+        nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+      } else if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = tabButtons.length - 1;
       }
 
-      headers.forEach((header, index) => {
-        header.setAttribute("role", "button");
-        header.setAttribute("tabindex", "0");
+      if (nextIndex !== null) {
+        event.preventDefault();
+        tabButtons[nextIndex].focus();
+        activateTab(tabButtons[nextIndex].dataset.tab);
+      }
+    });
+  });
 
-        function handleSort() {
-          const currentDirection = header.classList.contains("sort-asc")
-            ? "asc"
-            : header.classList.contains("sort-desc")
-              ? "desc"
-              : null;
-          const nextDirection = currentDirection === "asc" ? "desc" : "asc";
-          const sortType = header.dataset.sortType || "text";
-          const rows = Array.from(tbody.querySelectorAll("tr"));
+  document.querySelectorAll('.Alliance-summary').forEach(row => {
+    function toggleGroup() {
+      const targetId = row.getAttribute('data-target');
+      const group = document.getElementById(targetId);
+      const expanded = row.getAttribute('aria-expanded') === 'true';
 
-          clearSortIndicators();
-          header.classList.add(nextDirection === "asc" ? "sort-asc" : "sort-desc");
+      row.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      group.classList.toggle('hidden');
+    }
 
-          rows.sort((rowA, rowB) => {
-            const a = getCellValue(rowA, index);
-            const b = getCellValue(rowB, index);
-            return compareValues(a, b, sortType, nextDirection);
-          });
+    row.addEventListener('click', toggleGroup);
 
-          rows.forEach((row) => tbody.appendChild(row));
-        }
+    row.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleGroup();
+      }
+    });
+  });
 
-        header.addEventListener("click", handleSort);
-        header.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            handleSort();
-          }
+  function getCellValue(row, index) {
+    return row.children[index] ? row.children[index].innerText.trim() : "";
+  }
+
+  function compareValues(a, b, type, direction) {
+    if (type === "number") {
+      const numA = parseFloat(a) || 0;
+      const numB = parseFloat(b) || 0;
+      return direction === "asc" ? numA - numB : numB - numA;
+    }
+
+    return direction === "asc"
+      ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
+      : b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
+  }
+
+  document.querySelectorAll(".sortable-table").forEach((table) => {
+    const headers = table.querySelectorAll("th");
+    const tbody = table.querySelector("tbody");
+    const originalRows = Array.from(tbody.querySelectorAll("tr"));
+
+    originalRows.forEach((row, index) => {
+      row.dataset.originalIndex = String(index);
+    });
+
+    function clearSortIndicators() {
+      headers.forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+    }
+
+    function isEventRow(row) {
+      return row.classList.contains("campaign-event-row");
+    }
+
+    function compareRows(rowA, rowB, columnIndex, sortType, direction) {
+      const aIsEvent = isEventRow(rowA);
+      const bIsEvent = isEventRow(rowB);
+
+      if (aIsEvent && !bIsEvent) return 1;
+      if (!aIsEvent && bIsEvent) return -1;
+
+      if (aIsEvent && bIsEvent) {
+        return Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
+      }
+
+      const a = getCellValue(rowA, columnIndex);
+      const b = getCellValue(rowB, columnIndex);
+      const result = compareValues(a, b, sortType, direction);
+
+      if (result !== 0) {
+        return result;
+      }
+
+      return Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
+    }
+
+    headers.forEach((header, index) => {
+      header.setAttribute("role", "button");
+      header.setAttribute("tabindex", "0");
+
+      function handleSort() {
+        const currentDirection = header.classList.contains("sort-asc")
+          ? "asc"
+          : header.classList.contains("sort-desc")
+            ? "desc"
+            : null;
+
+        const nextDirection = currentDirection === "asc" ? "desc" : "asc";
+        const sortType = header.dataset.sortType || "text";
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        clearSortIndicators();
+        header.classList.add(nextDirection === "asc" ? "sort-asc" : "sort-desc");
+
+        rows.sort((rowA, rowB) => {
+          return compareRows(rowA, rowB, index, sortType, nextDirection);
         });
-      });
 
-      if (table.id === "historyTable") {
-        const resetButton = document.getElementById("resetHistorySort");
-
-        if (resetButton) {
-          resetButton.addEventListener("click", () => {
-            clearSortIndicators();
-            originalRows.forEach((row) => tbody.appendChild(row));
-          });
-        }
+        rows.forEach((row) => tbody.appendChild(row));
       }
-    });
 
-    document.querySelectorAll('.rules-toggle').forEach(toggle => {
-      const section = toggle.closest('.rules-section');
-      const startsOpen = toggle.getAttribute('aria-expanded') === 'true';
-      section.classList.toggle('open', startsOpen);
-
-      toggle.addEventListener('click', () => {
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-        section.classList.toggle('open', !isOpen);
+      header.addEventListener("click", handleSort);
+      header.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleSort();
+        }
       });
     });
 
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
+    if (table.id === "historyTable") {
+      const resetButton = document.getElementById("resetHistorySort");
 
-    window.addEventListener('load', () => {
-      window.scrollTo(0, 0);
+      if (resetButton) {
+        resetButton.addEventListener("click", () => {
+          clearSortIndicators();
+
+          const restoredRows = Array.from(tbody.querySelectorAll("tr")).sort((rowA, rowB) => {
+            return Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
+          });
+
+          restoredRows.forEach((row) => tbody.appendChild(row));
+        });
+      }
+    }
+  });
+
+  document.querySelectorAll('.rules-toggle').forEach(toggle => {
+    const section = toggle.closest('.rules-section');
+    const startsOpen = toggle.getAttribute('aria-expanded') === 'true';
+    section.classList.toggle('open', startsOpen);
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      section.classList.toggle('open', !isOpen);
     });
-  </script>
+  });
+
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+  });
+</script>
+  
 </body>
 </html>
