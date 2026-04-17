@@ -682,13 +682,14 @@
   
         <button class="tab-button" type="button" role="tab" id="tab-rules" aria-selected="false" aria-controls="panel-rules" data-tab="rules">Info</button>
   
-        <a
-          class="tab-button tab-link"
-          href="https://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Wahapedia</a>
-  
+        <button
+          class="tab-button"
+          type="button"
+          id="tab-wahapedia"
+        >
+          Wahapedia
+        </button>
+          
         <button class="tab-button" type="button" role="tab" id="tab-photos" aria-selected="false" aria-controls="panel-photos" data-tab="photos">Gallery</button>
   
         <button class="tab-button" type="button" role="tab" id="tab-log" aria-selected="false" aria-controls="panel-log" data-tab="log">Log</button>
@@ -1597,9 +1598,10 @@
     </section>
   </div>
 
-  <script>
-  const tabButtons = document.querySelectorAll('.tab-button');
+ <script>
+  const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
   const tabPanels = document.querySelectorAll('.tab-panel');
+  const wahapediaButton = document.getElementById('tab-wahapedia');
 
   function activateTab(tabName) {
     tabButtons.forEach(button => {
@@ -1641,6 +1643,16 @@
       }
     });
   });
+
+  if (wahapediaButton) {
+    wahapediaButton.addEventListener('click', () => {
+      window.open(
+        'https://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front',
+        '_blank',
+        'noopener,noreferrer'
+      );
+    });
+  }
 
   document.querySelectorAll('.Alliance-summary').forEach(row => {
     function toggleGroup() {
