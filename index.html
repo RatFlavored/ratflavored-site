@@ -640,6 +640,13 @@
         padding: 16px 10px 32px;
       }
 
+      .tab-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
       .tabs-wrap {
         padding: 10px;
       }
@@ -668,10 +675,21 @@
     <div class="tabs-wrap">
       <div class="tabs" role="tablist" aria-label="campaign sections">
         <button class="tab-button active" type="button" role="tab" id="tab-current" aria-selected="true" aria-controls="panel-current" data-tab="current">Current</button>
-        <button class="tab-button" type="button" role="tab" id="tab-intro" aria-selected="false" aria-controls="panel-intro" data-tab="intro">Intro</button>
-        <button class="tab-button" type="button" role="tab" id="tab-rules" aria-selected="false" aria-controls="panel-rules" data-tab="rules">Rules</button>
-        <button class="tab-button" type="button" role="tab" id="tab-photos" aria-selected="false" aria-controls="panel-photos" data-tab="photos">Photos</button>
+  
+        <button class="tab-button" type="button" role="tab" id="tab-rules" aria-selected="false" aria-controls="panel-rules" data-tab="rules">Info</button>
+  
+        <a
+          class="tab-button tab-link"
+          href="https://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wahapedia</a>
+  
+        <button class="tab-button" type="button" role="tab" id="tab-photos" aria-selected="false" aria-controls="panel-photos" data-tab="photos">Gallery</button>
+  
         <button class="tab-button" type="button" role="tab" id="tab-log" aria-selected="false" aria-controls="panel-log" data-tab="log">Log</button>
+  
+        <button class="tab-button" type="button" role="tab" id="tab-intro" aria-selected="false" aria-controls="panel-intro" data-tab="intro">Setup</button>
       </div>
     </div>
   </div>
