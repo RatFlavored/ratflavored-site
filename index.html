@@ -369,24 +369,14 @@
     .history-table tbody tr:hover {
       background: rgba(255, 255, 255, 0.03);
     }
-    
-    .history-table th.sort-alpha-asc::after {
-      content: " A▲";
+
+    .history-table th.sort-asc::after {
+      content: " ▲";
       font-size: 0.72rem;
     }
-    
-    .history-table th.sort-alpha-desc::after {
-      content: " A▼";
-      font-size: 0.72rem;
-    }
-    
-    .history-table th.sort-count-desc::after {
-      content: " #▼";
-      font-size: 0.72rem;
-    }
-    
-    .history-table th.sort-count-asc::after {
-      content: " #▲";
+
+    .history-table th.sort-desc::after {
+      content: " ▼";
       font-size: 0.72rem;
     }
 
@@ -1517,7 +1507,8 @@
           <h2>Campaign Log</h2>
           <button type="button" class="reset-sort-button" id="resetHistorySort">Reset Sort</button>
         </div>
-        <p class="section-note">Click headers to cycle: alphabetical ascending, alphabetical descending, most entries, least entries, then back to alphabetical.</p>        <div class="table-wrap">
+        <p class="section-note">Click headers to sort.</p>
+        <div class="table-wrap">
   <table class="history-table sortable-table" id="historyTable">
     <thead>
       <tr>
@@ -1937,82 +1928,6 @@
     });
   });
 
-<script>
-  const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
-  const tabPanels = document.querySelectorAll('.tab-panel');
-  const wahapediaButton = document.getElementById('tab-wahapedia');
-
-  function activateTab(tabName) {
-    tabButtons.forEach(button => {
-      const isActive = button.dataset.tab === tabName;
-      button.classList.toggle('active', isActive);
-      button.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      button.setAttribute('tabindex', isActive ? '0' : '-1');
-    });
-
-    tabPanels.forEach(panel => {
-      const isActive = panel.id === `panel-${tabName}`;
-      panel.classList.toggle('active', isActive);
-      panel.hidden = !isActive;
-    });
-
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }
-
-  tabButtons.forEach((button, index) => {
-    button.addEventListener('click', () => activateTab(button.dataset.tab));
-
-    button.addEventListener('keydown', event => {
-      let nextIndex = null;
-
-      if (event.key === 'ArrowRight') {
-        nextIndex = (index + 1) % tabButtons.length;
-      } else if (event.key === 'ArrowLeft') {
-        nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
-      } else if (event.key === 'Home') {
-        nextIndex = 0;
-      } else if (event.key === 'End') {
-        nextIndex = tabButtons.length - 1;
-      }
-
-      if (nextIndex !== null) {
-        event.preventDefault();
-        tabButtons[nextIndex].focus();
-        activateTab(tabButtons[nextIndex].dataset.tab);
-      }
-    });
-  });
-
-  if (wahapediaButton) {
-    wahapediaButton.addEventListener('click', () => {
-      window.open(
-        'https://wahapedia.ru/wh40k10ed/the-rules/war-on-the-vespator-front',
-        '_blank',
-        'noopener,noreferrer'
-      );
-    });
-  }
-
-  document.querySelectorAll('.Alliance-summary').forEach(row => {
-    function toggleGroup() {
-      const targetId = row.getAttribute('data-target');
-      const group = document.getElementById(targetId);
-      const expanded = row.getAttribute('aria-expanded') === 'true';
-
-      row.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      group.classList.toggle('hidden');
-    }
-
-    row.addEventListener('click', toggleGroup);
-
-    row.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleGroup();
-      }
-    });
-  });
-
   function getCellValue(row, index) {
     return row.children[index] ? row.children[index].innerText.trim() : "";
   }
@@ -2028,197 +1943,6 @@
       ? a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
       : b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
   }
-
-  document.querySelectorAll(".sortable-table").forEach((table) => {
-    const headers = table.querySelectorAll("th");
-    const tbody = table.querySelector("tbody");
-    const originalRows = Array.from(tbody.querySelectorAll("tr"));
-    const sortCycle = ["alphaAsc", "alphaDesc", "countDesc", "countAsc"];
-    let activeHeaderIndex = -1;
-    let activeModeIndex = -1;
-
-    originalRows.forEach((row, index) => {
-      row.dataset.originalIndex = String(index);
-    });
-
-    function clearSortIndicators() {
-      headers.forEach((h) => {
-        h.classList.remove(
-          "sort-alpha-asc",
-          "sort-alpha-desc",
-          "sort-count-desc",
-          "sort-count-asc"
-        );
-        h.removeAttribute("aria-sort");
-      });
-    }
-
-    function setSortIndicator(header, mode) {
-      clearSortIndicators();
-
-      const classMap = {
-        alphaAsc: "sort-alpha-asc",
-        alphaDesc: "sort-alpha-desc",
-        countDesc: "sort-count-desc",
-        countAsc: "sort-count-asc"
-      };
-
-      const ariaMap = {
-        alphaAsc: "ascending",
-        alphaDesc: "descending",
-        countDesc: "descending",
-        countAsc: "ascending"
-      };
-
-      header.classList.add(classMap[mode]);
-      header.setAttribute("aria-sort", ariaMap[mode]);
-    }
-
-    function isEventRow(row) {
-      return row.classList.contains("campaign-event-row");
-    }
-
-    function buildFrequencyMap(rows, columnIndex) {
-      const counts = new Map();
-
-      rows.forEach((row) => {
-        if (isEventRow(row)) return;
-        const value = getCellValue(row, columnIndex);
-        counts.set(value, (counts.get(value) || 0) + 1);
-      });
-
-      return counts;
-    }
-
-    function compareRows(rowA, rowB, columnIndex, sortType, mode, counts) {
-      const aIsEvent = isEventRow(rowA);
-      const bIsEvent = isEventRow(rowB);
-
-      if (aIsEvent && !bIsEvent) return 1;
-      if (!aIsEvent && bIsEvent) return -1;
-
-      if (aIsEvent && bIsEvent) {
-        return Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
-      }
-
-      const a = getCellValue(rowA, columnIndex);
-      const b = getCellValue(rowB, columnIndex);
-
-      if (mode === "alphaAsc") {
-        const result = compareValues(a, b, sortType, "asc");
-        return result !== 0
-          ? result
-          : Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
-      }
-
-      if (mode === "alphaDesc") {
-        const result = compareValues(a, b, sortType, "desc");
-        return result !== 0
-          ? result
-          : Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
-      }
-
-      if (mode === "countDesc" || mode === "countAsc") {
-        const countA = counts.get(a) || 0;
-        const countB = counts.get(b) || 0;
-        const countDiff = mode === "countDesc" ? countB - countA : countA - countB;
-
-        if (countDiff !== 0) {
-          return countDiff;
-        }
-
-        const alphaTieBreak = a.localeCompare(b, undefined, {
-          numeric: true,
-          sensitivity: "base"
-        });
-
-        return alphaTieBreak !== 0
-          ? alphaTieBreak
-          : Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
-      }
-
-      return Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
-    }
-
-    function restoreOriginalOrder() {
-      clearSortIndicators();
-      activeHeaderIndex = -1;
-      activeModeIndex = -1;
-
-      const restoredRows = Array.from(tbody.querySelectorAll("tr")).sort((rowA, rowB) => {
-        return Number(rowA.dataset.originalIndex) - Number(rowB.dataset.originalIndex);
-      });
-
-      restoredRows.forEach((row) => tbody.appendChild(row));
-    }
-
-    headers.forEach((header, index) => {
-      header.setAttribute("role", "button");
-      header.setAttribute("tabindex", "0");
-
-      function handleSort() {
-        if (activeHeaderIndex === index) {
-          activeModeIndex = (activeModeIndex + 1) % sortCycle.length;
-        } else {
-          activeHeaderIndex = index;
-          activeModeIndex = 0;
-        }
-
-        const mode = sortCycle[activeModeIndex];
-        const sortType = header.dataset.sortType || "text";
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-        const counts =
-          mode === "countDesc" || mode === "countAsc"
-            ? buildFrequencyMap(rows, index)
-            : new Map();
-
-        setSortIndicator(header, mode);
-
-        rows.sort((rowA, rowB) => {
-          return compareRows(rowA, rowB, index, sortType, mode, counts);
-        });
-
-        rows.forEach((row) => tbody.appendChild(row));
-      }
-
-      header.addEventListener("click", handleSort);
-      header.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleSort();
-        }
-      });
-    });
-
-    if (table.id === "historyTable") {
-      const resetButton = document.getElementById("resetHistorySort");
-
-      if (resetButton) {
-        resetButton.addEventListener("click", restoreOriginalOrder);
-      }
-    }
-  });
-
-  document.querySelectorAll('.rules-toggle').forEach(toggle => {
-    const section = toggle.closest('.rules-section');
-    const startsOpen = toggle.getAttribute('aria-expanded') === 'true';
-    section.classList.toggle('open', startsOpen);
-
-    toggle.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-      section.classList.toggle('open', !isOpen);
-    });
-  });
-
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
-  window.addEventListener('load', () => {
-    window.scrollTo(0, 0);
-  });
-</script>
 
   document.querySelectorAll(".sortable-table").forEach((table) => {
     const headers = table.querySelectorAll("th");
