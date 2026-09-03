@@ -325,8 +325,22 @@
   border-bottom: 1px solid rgba(170, 220, 170, 0.18);
 }
 
+
+
 .history-table tr.campaign-event-row:hover td {
   background: rgba(110, 150, 110, 0.28);
+}
+
+    .history-table tr.campaign-win-row td {
+  background: rgba(70, 110, 170, 0.22);
+  color: var(--text);
+  font-style: italic;
+  white-space: normal;
+  border-bottom: 1px solid rgba(140, 190, 255, 0.18);
+}
+
+.history-table tr.campaign-win-row:hover td {
+  background: rgba(70, 110, 170, 0.28);
 }
 
 .history-table tr.campaign-event-row-peril td {
@@ -714,9 +728,9 @@
   <div class="wrap">
     <section class="tab-panel active" id="panel-current" role="tabpanel" aria-labelledby="tab-current">
       <section class="card map stack-sm">
-        <h2>Vespator Front Campaign: 500 Worlds - Phase 5</h2>
-        <a class="map-link" href="vespator6_start.png" target="_blank" rel="noopener noreferrer">
-          <img src="vespator6_start.png" alt="Current campaign map for the 500 Worlds campaign">
+        <h2>Vespator Front Campaign: 500 Worlds - Campaign Completed! Imperial Victory!</h2>
+        <a class="map-link" href="vespator_final.png" target="_blank" rel="noopener noreferrer">
+          <img src="vespator_final.png" alt="Current campaign map for the 500 Worlds campaign">
         </a>
         <p class="map-hint">Click the map to open the full-size image in a new tab.</p>
         <p class="map-hint">Theater icon legend is in the upper right. Infrastructure icon legend is in the lower right.</p>
@@ -744,12 +758,12 @@
 
             <tbody>
               <tr class="Alliance-summary Alliance-imperium" data-target="imperium-players" aria-expanded="false" tabindex="0" role="button">
-                <td>Imperium</td>
+                <td>Imperium <strong>Victorious</strong></td>
                 <td></td>
                 <td>9</td>
                 <td>8</td>
                 <td>0</td>
-                <td>42</td>
+                <td>41</td>
                 <td>Yes</td>
                 <td>3</td>
                 <td>3</td>
@@ -758,7 +772,7 @@
             </tbody>
             <tbody id="imperium-players" class="player-group hidden">
               <tr class="player-row">
-                <td>Nick</td>
+                <td>Nick <strong>Victorious</strong></td>
                 <td>Ultramarines</td>
                 <td>7</td>
                 <td>3</td>
@@ -770,7 +784,7 @@
                 <td></td>
               </tr>
               <tr class="player-row">
-                <td>Daniel</td>
+                <td>Daniel <strong>Victorious</strong></td>
                 <td>Dark Angels</td>
                 <td>2</td>
                 <td>5</td>
@@ -790,7 +804,7 @@
                 <td>10</td>
                 <td>7</td>
                 <td>0</td>
-                <td>37</td>
+                <td>36</td>
                 <td>Yes</td>
                 <td>3</td>
                 <td>3</td>
@@ -831,7 +845,7 @@
                 <td>5</td>
                 <td>9</td>
                 <td>0</td>
-                <td>35</td>
+                <td>33</td>
                 <td>Yes</td>
                 <td>2</td>
                 <td>1</td>
@@ -2095,8 +2109,8 @@
   <td>Kieran</td>
   <td>Victory</td>
   <td>-</td>
-  <td>-</td>
-  <td>-</td>
+  <td>Support Facility on Novamagnor</td>
+  <td>Caltus Novem</td>
 </tr>
 <tr data-entry-id="002-05">
   <td>002-DANIEL</td>
@@ -2111,8 +2125,8 @@
   <td>Ian</td>
   <td>Loss</td>
   <td>-</td>
-  <td>-</td>
-  <td>-</td>
+  <td>Support Facility on Novamagnor</td>
+  <td>Novamagnor</td>
 </tr>
 <tr data-entry-id="003-05">
   <td>003-IAN</td>
@@ -2128,7 +2142,7 @@
   <td>Victory</td>
   <td>-</td>
   <td>-</td>
-  <td>-</td>
+  <td>Ikaron Prime</td>
 </tr>
 <tr data-entry-id="004-05">
   <td>004-JOSE</td>
@@ -2144,7 +2158,7 @@
   <td>Victory</td>
   <td>-</td>
   <td>-</td>
-  <td>-</td>
+  <td>Caltus Novem</td>
 </tr>
 <tr data-entry-id="005-05">
   <td>005-DAVID</td>
@@ -2160,7 +2174,7 @@
   <td>-1/-0</td>
   <td>-</td>
   <td>-</td>
-  <td>-</td>
+  <td>Caltus Novem</td>
 </tr>
 <tr data-entry-id="006-05">
   <td>006-KIERAN</td>
@@ -2176,7 +2190,7 @@
   <td>Loss</td>
   <td>-</td>
   <td>-</td>
-  <td>-</td>
+  <td>Jawardet</td>
 </tr>
 
 <tr class="campaign-event-row">
@@ -2196,15 +2210,15 @@
   <td>Nick</td>
   <td>6</td>
   <td>Caltus Novem</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>Deploy Kill Teams</td>
+  <td>-</td>
+  <td>Kryndaer</td>
+  <td>Non-Imperium</td>
+  <td>-</td>
+  <td>-1/-1</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Caltus Novem</td>
 </tr>
 <tr data-entry-id="002-06">
   <td>002-DANIEL</td>
@@ -2212,15 +2226,15 @@
   <td>Daniel</td>
   <td>6</td>
   <td>Novamagnor</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>Deploy Kill Teams</td>
+  <td>-</td>
+  <td>Ikaron Prime</td>
+  <td>Non-Imperium</td>
+  <td>-</td>
+  <td>-0/-1</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Novamagnor</td>
 </tr>
 <tr data-entry-id="003-06">
   <td>003-IAN</td>
@@ -2228,15 +2242,15 @@
   <td>Ian</td>
   <td>6</td>
   <td>Ikaron Prime</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>Void Leap</td>
+  <td>-</td>
+  <td>Karabas</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Karabas</td>
 </tr>
 <tr data-entry-id="004-06">
   <td>004-JOSE</td>
@@ -2244,15 +2258,15 @@
   <td>Jose</td>
   <td>6</td>
   <td>Caltus Novem</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>Void Leap</td>
+  <td>-</td>
+  <td>Astarthem</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Astarthem</td>
 </tr>
 <tr data-entry-id="005-06">
   <td>005-DAVID</td>
@@ -2260,15 +2274,15 @@
   <td>David</td>
   <td>6</td>
   <td>Caltus Novem</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>Deploy Kill Teams</td>
+  <td>-</td>
+  <td>Caltus Novem</td>
+  <td>Non-Xenos</td>
+  <td>-</td>
+  <td>-1/-0</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Caltus Novem</td>
 </tr>
 <tr data-entry-id="006-06">
   <td>006-KIERAN</td>
@@ -2276,16 +2290,21 @@
   <td>Kieran</td>
   <td>6</td>
   <td>Jawardet</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td>Void Leap</td>
+  <td>-</td>
+  <td>Caltus Novem</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Caltus Novem</td>
 </tr>
+
+    <tr class="campaign-win-row">
+  <td class="campaign-event-cell" colspan="14">
+    <strong>Campaign End:</strong> The Imperium is victorious on the Vespator Front!
+  </td>
       
     </tbody>
   </table>
